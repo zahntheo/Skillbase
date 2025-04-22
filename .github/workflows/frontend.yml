@@ -1,0 +1,34 @@
+name: Node.js CI
+# define trigger
+on:
+# workflow if push but only on dev branch
+  push:
+    branches:
+      - development  
+  pull_request:
+    branches:
+      - development  
+
+jobs:
+  build:
+    runs-on: ubuntu-latest 
+
+    steps:
+    - name: Checkout code # get latest version of code
+      uses: actions/checkout@v2  
+
+    - name: Set up Node.js # install node.js on newest version
+      uses: actions/setup-node@v2  
+      with:
+        node-version: '14'  
+
+    - name: Install dependencies
+      run: npm install  
+
+    - name: Run tests # run test if they exist
+      run: npm test  
+
+    - name: Build Frontend 
+      if: github.ref == 'refs/heads/development'  
+      run: npm run build  
+
