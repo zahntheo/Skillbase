@@ -10,29 +10,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'  
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'  
 
-    - name: Install dependencies
-      run: |
-        cd client
-        npm install
+      - name: Install dependencies & build
+        run: |
+          cd client
+          npm ci
+          npm run build
 
-    - name: Build Frontend
-      run: |
-        cd client
-        npm run build  # Baut das Frontend
+      - name: Deploy to Vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          npm install -g vercel
+          cd client
+          vercel --prod --yes --token=$VERCEL_TOKEN
 
-    - name: Deploy to Vercel
-      env:
-        VERCELO_AUTH_TOKEN: ${{ secrets.VERCEL_AUTH_TOKEN }}  
-      run: |
-        cd client
-        npm install -g vercel
-        vercel --prod  # Deployt das Frontend
 
