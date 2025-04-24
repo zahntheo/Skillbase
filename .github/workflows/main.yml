@@ -3,30 +3,36 @@ name: Deploy to Vercel
 on:
   push:
     branches:
-      - main  # just deploy while pushing on main
+      - main  
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code # get code
+    - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Node.js # install node.js
+    - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'
+        node-version: '14'  
 
     - name: Install dependencies
-      run: npm install
+      run: |
+        cd client
+        npm install
 
     - name: Build Frontend
-      run: npm run build  # Baut die React-App
+      run: |
+        cd client
+        npm run build  # Baut das Frontend
 
     - name: Deploy to Vercel
       env:
         VERCELO_AUTH_TOKEN: ${{ secrets.VERCEL_AUTH_TOKEN }}  
       run: |
-        npm install -g vercel 
-        vercel --prod  
+        cd client
+        npm install -g vercel
+        vercel --prod  # Deployt das Frontend
+
