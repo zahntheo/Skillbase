@@ -1,36 +1,12 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from 'react'
 import './App.css'
+import Button from './assets/button'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1 className="text-3xl font-bold underline">Vite + React + TailwindCSS</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        This is the master test
-      </p>
-    </div>
-  )
+    <main className='min-h-screen flex justify-center items-center'>
+      <Button type="submit" autoFocus={true}/>
+    </main>
+  );
 }
-
-export default App
 
