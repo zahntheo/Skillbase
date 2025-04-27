@@ -1,12 +1,16 @@
-import React from 'react'
-import './App.css'
-import Button from './assets/button'
+import { Routes, Route } from "react-router-dom";
+import LoginPage from "./pages/Login/LoginPage";
+import HomePage from  "./pages/Home/HomePage"
 
-export default function Home() {
+function App() {
   return (
-    <main className='min-h-screen flex justify-center items-center'>
-      <Button type="submit" autoFocus={true}/>
-    </main>
+    <Routes>
+      <Route path="/" element={<LoginPage />} />
+      <Route path="/" element={<HomePage />} />
+    </Routes>
   );
 }
+
+export default App;
+
 
