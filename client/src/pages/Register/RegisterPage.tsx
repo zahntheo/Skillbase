@@ -1,8 +1,9 @@
+import RegisterForm from "./RegisterForm";
 
-export default function HomePage() {
+export default function RegisterPage() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <p>Hallo World!</p>
+      <RegisterForm />
     </div>
   );
 }

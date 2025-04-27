@@ -5,33 +5,54 @@ import { useState } from "react";
 import { BsApple } from "react-icons/bs";
 import { FaXTwitter } from "react-icons/fa6";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const togglePasswordView = () => setShowPassword(!showPassword);
-
+  const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
+  const handleButtonClick = () => {
+    navigate("/home"); 
+  };
+    const animations = {
+        normal: {
+          scale: [1, 1.02, 1],
+          transition: {
+            duration: 2,
+            repeat: Infinity,
+            repeatType: "loop" as const,  
+            ease: "easeInOut",
+          },
+        },
+        hover: {
+          scale: 1,
+          transition: { duration: 0.3 },
+        },
+      };
   return (
     <div className="w-full bg-[url('/images/background.jpg')] h-screen flex items-center justify-center">
-      <motion.div
-        className="w-[90%] max-w-sm md:max-w-md lg:max-w-md p-5 bg-gray-900 flex-col flex items-center gap-3 rounded-xl shadow-slate-500 shadow-lg"
-        initial={{ scale: 1 }}
-        animate={{ scale: [1, 1.01, 1] }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          repeatType: "loop",
-          ease: "easeInOut",
-        }}
-      >
+     <motion.div
+                className="w-[90%] max-w-sm md:max-w-md lg:max-w-md p-5 bg-gray-900 flex-col flex items-center gap-3 rounded-xl shadow-slate-500 shadow-lg"
+                initial="normal"
+                animate={isHovered ? "hover" : "normal"}
+                variants={animations}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+            >
         <img src="/images/logo2.png" alt="logo" className="w-42 md:w-42" />
 
 
         <h1 className="text-lg md:text-xl font-semibold text-[#4A3F75]">Welcome Back</h1>
 
-      
         <p className="text-xs md:text-sm text-[#6B5CA5] text-center">
-          Don't have an account? <span className="text-[#4A3F75]">Sign up</span>
+          Don't have an account?{" "}
+          <Link to="/Register" className="text-[#4A3F75] underline">
+            Sign up
+          </Link>
         </p>
+
 
         <div className="w-full flex flex-col gap-3">
           <div className="w-full flex items-center gap-2 bg-gray-800 p-2 rounded-xl">
@@ -63,9 +84,9 @@ const LoginForm = () => {
             )}
           </div>
         </div>
-
-    
-        <button className="w-full p-2 bg-[#4A3F75] rounded-xl mt-3 hover:bg-[#6B5CA5] text-sm md:text-base text-white">
+        
+        
+        <button onClick={handleButtonClick} className="w-full p-2 bg-[#4A3F75] rounded-xl mt-3 hover:bg-[#6B5CA5] text-sm md:text-base text-white">
           Login
         </button>
 
@@ -77,7 +98,7 @@ const LoginForm = () => {
           <div className="w-2/5 h-[2px] bg-gray-800"></div>
         </div>
 
-   
+
         <div className="w-full flex items-center justify-center gap-10">
           <div className="p-2 md:px-6 lg:px-10 bg-[#4A3F75] cursor-pointer rounded-xl hover:bg-[#6B5CA5]">
             <BsApple className="text-lg md:text-xl text-white" />
