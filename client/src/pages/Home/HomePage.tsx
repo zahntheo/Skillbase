@@ -5,9 +5,11 @@ import { Home, Settings, Bell } from "lucide-react"
 // import side elements
 import ProfileCard from "../../elements/home/ProfileCard"
 import SkillCard from "../../elements/home/SkillCard"
+import ProjectCard from "../../elements/home/ProjectCard"
 
 // import mock data
 import skills from "../../assets/data/sampleSkills"
+import projects from "../../assets/data/sampleProjects"
 
 export default function HomePage() {
   return (
@@ -49,6 +51,7 @@ export default function HomePage() {
             />
 
             <SkillCard skills={skills} />
+            <ProjectCard projects={projects} />
           </div>
 
         </div>
