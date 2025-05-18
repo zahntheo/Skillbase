@@ -1,41 +1,45 @@
 import React from 'react';
-
-
+import { MdVerified } from 'react-icons/md';
 import { Skill } from '../../assets/types/skills';
 
-import { MdVerified } from "react-icons/md";
-
-
 interface ProfileCardProps {
-    skills?: Skill[];
+  skills?: Skill[];
 }
 
 const ProfileCard: React.FC<ProfileCardProps> = ({ skills }) => (
-    <div className="flex justify-center items-center bg-white p-4 rounded-lg shadow-md space-x-3 w-full max-w-md mx-auto m-8">
-        <div className='grid grid-cols-1 gap-4'>
-            {skills?.map((skill) => (
-                <div key={skill.id} className="flex items-center space-x-2">
-                    <img src={skill.iconUrl} alt={skill.title} className="w-8 h-8" />
-                    <div>
-                        <div className="flex items-center space-x-2">
-                            <h3 className="text-lg font-semibold text-gray-800">{skill.title}</h3>
-                            {skill.isVerified && (
-                                <MdVerified className='text-blue-500'/>
-                                )}
-                        </div>
-                        <p className="text-sm text-gray-500">{skill.description}</p>
-                        <div className="w-64 bg-gray-200 rounded-full h-2 mt-1">
-                            <div
-                                className="bg-blue-500 h-2 rounded-full"
-                                style={{ width: `${(skill.level / 5) * 100}%` }}
-                            />
-                        </div>
+  <div className="flex justify-center items-center bg-white p-4 rounded-lg shadow-md space-x-3 w-full max-w-md mx-auto m-8">
+    <div className="grid grid-cols-1 gap-4">
+      {skills?.map((skill) => (
+        <div key={skill.id} className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2">
+            <img src={skill.iconUrl} alt={skill.title} className="w-8 h-8" />
+            <div>
 
-                    </div>
-                </div>
-            ))}
+              <div className="flex items-center space-x-2">
+                <h3 className="text-lg font-semibold text-gray-800">{skill.title}</h3>
+                {skill.isVerified && <MdVerified className="text-blue-500" />}
+                {skill.yearsExperience !== undefined && (
+                  <span className="text-sm text-gray-500">
+                    {skill.yearsExperience} yrs
+                  </span>
+                )}
+              </div>
+
+              <p className="text-sm text-gray-500">{skill.description}</p>
+
+    
+              <div className="w-64 bg-gray-200 rounded-full h-2 mt-1">
+                <div
+                  className="bg-blue-500 h-2 rounded-full"
+                  style={{ width: `${(skill.level / 5) * 100}%` }}
+                />
+              </div>
+            </div>
+          </div>
         </div>
+      ))}
     </div>
+  </div>
 );
 
 export default ProfileCard;
