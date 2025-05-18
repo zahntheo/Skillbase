@@ -37,7 +37,10 @@ const RegisterForm = () => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <img src="/images/logo3.png" alt="logo" className="w-43" />
+        <h1 className="text-white text-4xl font-bold" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+          Skillbase
+        </h1>
+
 
         <h1 className="text-xl font-semibold text-white">Create Account</h1>
 

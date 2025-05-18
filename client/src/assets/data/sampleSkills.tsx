@@ -27,6 +27,7 @@ const sampleSkills: Skill[] = [
     tags: ['Types', 'JS', 'TSX'],
     iconUrl: 'https://cdn-icons-png.flaticon.com/512/919/919832.png',
   },
+  
 ];
 
 export default sampleSkills;

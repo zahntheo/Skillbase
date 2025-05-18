@@ -29,6 +29,7 @@ export default function HomePage() {
         {/* Profile Content */}
         <div className="flex-1 overflow-auto p-6">
           <div className="flex flex-col items-center justify-center mb-4">
+            
             <img
               src="/images/profile1.jpg"
               alt="Profile"
