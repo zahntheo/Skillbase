@@ -20,7 +20,7 @@ const sampleSkills: Skill[] = [
     level: 4,
     zertifikat: 'TS Advanced Course',
     description: 'Starke Kenntnisse in Typisierung und Interfaces.',
-    category: 'Frontend',
+    category: 'Backend',
     lastUsed: '2025-05-01',
     yearsExperience: 2,
     isVerified: false,
