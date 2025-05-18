@@ -15,7 +15,11 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ skills }) => (
                 {skills
                     ?.filter((skill) => skill.category === 'Backend')
                     .map((skill) => (
-                        <div key={skill.id} className="p-4 bg-white rounded-md shadow flex items-center space-x-2">
+                        <div
+                            key={skill.id}
+                            className="p-4 bg-white rounded-md shadow transform transition duration-300 ease-in-out hover:scale-105 hover:shadow-lg flex items-center space-x-2"
+                        >
+
                             <div className="flex items-center space-x-2">
                                 <img src={skill.iconUrl} alt={skill.title} className="w-8 h-8" />
                                 <div>
@@ -53,7 +57,11 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ skills }) => (
                 {skills
                     ?.filter((skill) => skill.category === 'Frontend')
                     .map((skill) => (
-                        <div key={skill.id} className="p-4 bg-white rounded-md shadow flex items-center space-x-2">
+                        <div
+                            key={skill.id}
+                            className="p-4 bg-white rounded-md shadow transform transition duration-300 ease-in-out hover:scale-105 hover:shadow-lg flex items-center space-x-2"
+                        >
+
                             <div className="flex items-center space-x-2">
                                 <img src={skill.iconUrl} alt={skill.title} className="w-8 h-8" />
                                 <div>
