@@ -1,5 +1,4 @@
 import React from 'react';
-import { MdVerified } from 'react-icons/md';
 import { Skill } from '../../assets/types/skills';
 
 interface ProfileCardProps {
@@ -26,7 +25,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ skills }) => (
 
                                     <div className="flex items-center space-x-2">
                                         <h3 className="text-lg font-semibold text-gray-800">{skill.title}</h3>
-                                        {skill.isVerified && <MdVerified className="text-blue-500" />}
+                                        {skill.isVerified && <span className="text-blue-500">✔</span>}
                                         {skill.yearsExperience !== undefined && (
                                             <span className="text-sm text-gray-500">
                                                 {skill.yearsExperience} yrs
@@ -68,7 +67,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ skills }) => (
 
                                     <div className="flex items-center space-x-2">
                                         <h3 className="text-lg font-semibold text-gray-800">{skill.title}</h3>
-                                        {skill.isVerified && <MdVerified className="text-blue-500" />}
+                                        {skill.isVerified && <span className="text-blue-500">✔</span>}
                                         {skill.yearsExperience !== undefined && (
                                             <span className="text-sm text-gray-500">
                                                 {skill.yearsExperience} yrs

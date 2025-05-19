@@ -5,6 +5,8 @@ export interface WorkStation {
     company?: string;         // Company name
     location?: string;       // Location of the life station
     tags?: string[];          // Tags for the life station
+    startDate?: string;       // Start date
+    completionDate?: string;  // Completion date
     companyLogo?: string;      // Company logo
     isVerified?: boolean;     // Verification status
     isFeatured?: boolean;     // Featured status
