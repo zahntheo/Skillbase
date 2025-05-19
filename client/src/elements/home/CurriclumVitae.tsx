@@ -7,9 +7,14 @@ interface WorkStationProps {
     workStations?: WorkStation[];
 }
 
-const formatDate = (dateStr) => {
+interface FormatDateOptions {
+    year: "numeric";
+    month: "long";
+}
+
+const formatDate = (dateStr?: string): string => {
     if (!dateStr) return "Present";
-    const options = { year: "numeric", month: "long" };
+    const options: FormatDateOptions = { year: "numeric", month: "long" };
     return new Date(dateStr).toLocaleDateString("en-US", options);
 };
 
