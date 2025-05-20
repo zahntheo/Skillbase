@@ -16,7 +16,7 @@ import workStations from "../../assets/data/sampleWorkStations"
 export default function HomePage() {
   return (
     <div className="flex h-screen">
-      <Sidebar>
+      <Sidebar profile="/profile">
         <SidebarItem icon={<Home size={20} />} text="Home" to="/home" active />
         <SidebarItem icon={<Bell size={20} />} text="Notifications" to="/notifications" />
         <SidebarItem icon={<Settings size={20} />} text="Settings" to="/generalSettings"/>

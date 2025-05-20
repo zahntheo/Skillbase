@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 interface SidebarProps {
   children: ReactNode;
+  profile:string
 }
 
 interface SidebarItemProps {
@@ -11,7 +12,7 @@ interface SidebarItemProps {
   text: string;
   active?: boolean;
   alert?: boolean;
-  to:string
+  to: string
 }
 
 interface SidebarContextType {
@@ -20,7 +21,7 @@ interface SidebarContextType {
 
 const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
 
-export default function Sidebar({ children }: SidebarProps) {
+export default function Sidebar({ children, profile }: SidebarProps) {
   const [expanded, setExpanded] = useState(true);
 
   return (
@@ -45,24 +46,26 @@ export default function Sidebar({ children }: SidebarProps) {
         <SidebarContext.Provider value={{ expanded }}>
           <ul className="flex-1 px-3">{children}</ul>
         </SidebarContext.Provider>
-
-        <div className="border-t border-gray-800 flex p-3 bg-black">
-          <img
-            src="https://ui-avatars.com/api/?background=888888&color=ffffff&bold=true"
-            alt="User avatar"
-            className="w-10 h-10 rounded-md"
-          />
-          <div
-            className={`flex justify-between items-center overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0 ml-0"
-              }`}
-          >
-            <div className="leading-4 text-white">
-              <h4 className="font-semibold">John Doe</h4>
-              <span className="text-xs text-gray-400">johndoe@gmail.com</span>
+        <Link to={profile}>
+          <div className="border-t border-gray-800 flex p-3 bg-black">
+            <img
+              src="https://ui-avatars.com/api/?background=888888&color=ffffff&bold=true"
+              alt="User avatar"
+              className="w-10 h-10 rounded-md"
+            />
+            <div
+              className={`flex justify-between items-center overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0 ml-0"
+                }`}
+            >
+              <div className="leading-4 text-white">
+                <h4 className="font-semibold">John Doe</h4>
+                <span className="text-xs text-gray-400">johndoe@gmail.com</span>
+              </div>
+              <MoreVertical className="text-gray-400" size={20} />
             </div>
-            <MoreVertical className="text-gray-400" size={20} />
           </div>
-        </div>
+        </Link>
+
       </nav>
     </aside>
   );
@@ -76,40 +79,40 @@ export function SidebarItem({ icon, text, active, alert, to }: SidebarItemProps)
 
   return (
     <Link to={to}>
-    <li
-      className={`relative flex items-center py-2 px-3 my-1
+      <li
+        className={`relative flex items-center py-2 px-3 my-1
         font-medium rounded-md cursor-pointer
         transition-colors group
         ${active
-          ? "bg-gray-800 text-white"
-          : "hover:bg-gray-800 text-gray-300"}`
-      }
-    >
-      {icon}
-      <span
-        className={`overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0 ml-0"
-          }`}
+            ? "bg-gray-800 text-white"
+            : "hover:bg-gray-800 text-gray-300"}`
+        }
       >
-        {text}
-      </span>
-      {alert && (
-        <div
-          className={`absolute right-2 w-2 h-2 rounded-full bg-white ${expanded ? "" : "top-2"}`}
-        />
-      )}
+        {icon}
+        <span
+          className={`overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0 ml-0"
+            }`}
+        >
+          {text}
+        </span>
+        {alert && (
+          <div
+            className={`absolute right-2 w-2 h-2 rounded-full bg-white ${expanded ? "" : "top-2"}`}
+          />
+        )}
 
-      {!expanded && (
-        <div
-          className={`absolute left-full rounded-md px-2 py-1 ml-6
+        {!expanded && (
+          <div
+            className={`absolute left-full rounded-md px-2 py-1 ml-6
             bg-gray-900 text-white text-sm
             invisible opacity-0 -translate-x-3 transition-all
             group-hover:visible group-hover:opacity-100 group-hover:translate-x-0
           `}
-        >
-          {text}
-        </div>
-      )}
-    </li>
+          >
+            {text}
+          </div>
+        )}
+      </li>
     </Link>
   );
 }
