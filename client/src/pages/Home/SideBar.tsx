@@ -25,11 +25,13 @@ export default function Sidebar({ children }: SidebarProps) {
     <aside className="h-screen">
       <nav className="h-full flex flex-col bg-black border-r border-gray-700 shadow-md">
         <div className="p-4 pb-2 flex justify-between items-center">
-          <img
-            src="/images/logo3.png"
-            className={`overflow-hidden transition-all ${expanded ? "w-48" : "w-0"}`}
-            alt="Logo"
-          />
+          <h1
+            className={`text-white text-4xl font-bold overflow-hidden transition-all ${expanded ? "w-48" : "w-0"}`}
+            style={{ fontFamily: "'Orbitron', sans-serif" }}
+          >
+            Skillbase
+          </h1>
+
           <button
             onClick={() => setExpanded((curr) => !curr)}
             className="p-1.5 rounded-lg bg-gray-800 hover:bg-gray-700"
@@ -49,9 +51,8 @@ export default function Sidebar({ children }: SidebarProps) {
             className="w-10 h-10 rounded-md"
           />
           <div
-            className={`flex justify-between items-center overflow-hidden transition-all ${
-              expanded ? "w-52 ml-3" : "w-0 ml-0"
-            }`}
+            className={`flex justify-between items-center overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0 ml-0"
+              }`}
           >
             <div className="leading-4 text-white">
               <h4 className="font-semibold">John Doe</h4>
@@ -83,9 +84,8 @@ export function SidebarItem({ icon, text, active, alert }: SidebarItemProps) {
     >
       {icon}
       <span
-        className={`overflow-hidden transition-all ${
-          expanded ? "w-52 ml-3" : "w-0 ml-0"
-        }`}
+        className={`overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0 ml-0"
+          }`}
       >
         {text}
       </span>

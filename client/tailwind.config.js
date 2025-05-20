@@ -1,11 +1,19 @@
+// tailwind.config.js
 module.exports = {
-    content: [
-      "./index.html",
-      "./src/**/*.{js,ts,jsx,tsx}",  // Dies stellt sicher, dass Tailwind auch in deinen TSX-Dateien funktioniert
-    ],
-    theme: {
-      extend: {},
+  theme: {
+    extend: {
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        },
+      },
+      animation: {
+        wiggle: 'wiggle 0.5s ease-in-out infinite',
+      },
     },
-    plugins: [],
-  }
+  },
+  plugins: [],
+};
+
   
