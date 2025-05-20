@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 interface SidebarProps {
   children: ReactNode;
-  profile:string
+  profile: string
 }
 
 interface SidebarItemProps {
@@ -24,6 +24,7 @@ const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
 export default function Sidebar({ children, profile }: SidebarProps) {
   const [expanded, setExpanded] = useState(true);
 
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <aside className="h-screen">
       <nav className="h-full flex flex-col bg-black border-r border-gray-700 shadow-md">
@@ -46,8 +47,9 @@ export default function Sidebar({ children, profile }: SidebarProps) {
         <SidebarContext.Provider value={{ expanded }}>
           <ul className="flex-1 px-3">{children}</ul>
         </SidebarContext.Provider>
-        <Link to={profile}>
-          <div className="border-t border-gray-800 flex p-3 bg-black">
+        <div className="border-t border-gray-800 flex p-3 bg-black relative">
+          {/* Verlinkter Teil */}
+          <Link to={profile} className="flex items-center flex-grow overflow-hidden">
             <img
               src="https://ui-avatars.com/api/?background=888888&color=ffffff&bold=true"
               alt="User avatar"
@@ -61,10 +63,30 @@ export default function Sidebar({ children, profile }: SidebarProps) {
                 <h4 className="font-semibold">John Doe</h4>
                 <span className="text-xs text-gray-400">johndoe@gmail.com</span>
               </div>
-              <MoreVertical className="text-gray-400" size={20} />
             </div>
-          </div>
-        </Link>
+          </Link>
+
+          {expanded && (
+            <div className="ml-2 relative">
+              <button
+                onClick={() => setMenuOpen((prev) => !prev)}
+                className="p-1"
+              >
+                <MoreVertical className="text-gray-400" size={20} />
+              </button>
+
+              {menuOpen && (
+                <div className="absolute right-0 bottom-full mb-2 w-40 bg-white rounded-md shadow-lg z-50">
+                  <ul className="text-sm text-gray-700">
+                    <li className="hover:bg-gray-100 px-4 py-2 cursor-pointer">Profil ansehen</li>
+                    <li className="hover:bg-gray-100 px-4 py-2 cursor-pointer">Abmelden</li>
+                  </ul>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
 
       </nav>
     </aside>
