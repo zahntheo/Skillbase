@@ -19,7 +19,7 @@ export default function HomePage() {
       <Sidebar>
         <SidebarItem icon={<Home size={20} />} text="Home" to="/home" active />
         <SidebarItem icon={<Bell size={20} />} text="Notifications" to="/notifications" />
-        <SidebarItem icon={<Settings size={20} />} text="Settings" to="/settings"/>
+        <SidebarItem icon={<Settings size={20} />} text="Settings" to="/generalSettings"/>
       </Sidebar>
 
       <main className="flex-1 flex flex-col bg-gradient-to-tr from-white to-gray-300">
