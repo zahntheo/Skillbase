@@ -1,5 +1,6 @@
 import { ReactNode, useState, createContext, useContext } from "react";
 import { ChevronFirst, ChevronLast, MoreVertical } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface SidebarProps {
   children: ReactNode;
@@ -10,6 +11,7 @@ interface SidebarItemProps {
   text: string;
   active?: boolean;
   alert?: boolean;
+  to:string
 }
 
 interface SidebarContextType {
@@ -66,13 +68,14 @@ export default function Sidebar({ children }: SidebarProps) {
   );
 }
 
-export function SidebarItem({ icon, text, active, alert }: SidebarItemProps) {
+export function SidebarItem({ icon, text, active, alert, to }: SidebarItemProps) {
   const context = useContext(SidebarContext);
   if (!context) throw new Error("SidebarItem must be used within a Sidebar");
 
   const { expanded } = context;
 
   return (
+    <Link to={to}>
     <li
       className={`relative flex items-center py-2 px-3 my-1
         font-medium rounded-md cursor-pointer
@@ -107,6 +110,7 @@ export function SidebarItem({ icon, text, active, alert }: SidebarItemProps) {
         </div>
       )}
     </li>
+    </Link>
   );
 }
 
