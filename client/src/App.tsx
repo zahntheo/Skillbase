@@ -14,7 +14,6 @@ function App() {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/home" element={<HomePage />} />
       <Route path="/notifications" element={<NotificationsPage />} />
-      {/* Add more routes as needed */}
       <Route path="/generalSettings" element={<GeneralSettingsPage />} />
       <Route path="/profile" element={<ProfilePage />} />
     </Routes>

@@ -1,4 +1,4 @@
-
+import FadeInSection from "../../elements/home/FadeInSection"
 import Sidebar, { SidebarItem } from "./SideBar"
 import { Home, Settings, Bell } from "lucide-react"
 
@@ -12,6 +12,9 @@ import CurriculumVitae from "../../elements/home/CurriclumVitae"
 import skills from "../../assets/data/sampleSkills"
 import projects from "../../assets/data/sampleProjects"
 import workStations from "../../assets/data/sampleWorkStations"
+
+
+
 
 export default function HomePage() {
   return (
@@ -28,48 +31,58 @@ export default function HomePage() {
           <h1 className="text-2xl font-bold text-gray-800">Your Profile</h1>
 
           <div className="flex items-right gap-4">
-          <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
-            Edit Profile
-          </button>
-          <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
-            Export CV
-          </button>
+            <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
+              Edit Profile
+            </button>
+            <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
+              Export CV
+            </button>
+          </div>
+
         </div>
 
-    </div>
+        {/* Profile Content */}
+        <div className="flex-1 overflow-auto p-6">
+          <div className="flex flex-col items-center justify-center mb-4">
 
-        {/* Profile Content */ }
-  <div className="flex-1 overflow-auto p-6">
-    <div className="flex flex-col items-center justify-center mb-4">
+            <img
+              src="/images/profile1.jpg"
+              alt="Profile"
+              className="w-32 h-32 rounded-full mb-4 ring-4 ring-white shadow-md"
+            />
 
-      <img
-        src="/images/profile1.jpg"
-        alt="Profile"
-        className="w-32 h-32 rounded-full mb-4"
-      />
-      <div className="flex flex-col items-center">
-        <h3 className="text-lg font-semibold text-gray-800">John Doe</h3>
-        <span className="text-sm text-gray-500">@johndoe</span>
-      </div>
-    </div>
+            <div className="flex flex-col items-center">
+              <h3 className="text-lg font-semibold text-gray-800">John Doe</h3>
+              <span className="text-sm text-gray-500">@johndoe</span>
+            </div>
+          </div>
+          <FadeInSection>
+            <ProfileCard
+              jobTitle="Software Engineer"
+              hobby="Loves coding and coffee"
+              location="Based in San Francisco"
+            />
+          </FadeInSection>
+          <FadeInSection>
+            <SkillCard skills={skills} />
+          </FadeInSection>
+          <FadeInSection>
+            <ProjectCard projects={projects} />
+          </FadeInSection>
+          <FadeInSection>
+            <CurriculumVitae workStations={workStations} />
 
-    <div className="justify-items-center">
-      <ProfileCard
-        jobTitle="Software Engineer"
-        hobby="Loves coding and coffee"
-        location="Based in San Francisco"
-      />
+          </FadeInSection>
 
-      <SkillCard skills={skills} />
-      <ProjectCard projects={projects} />
-      <CurriculumVitae workStations={workStations} />
-    </div>
 
-  </div>
+        </div>
       </main >
 
     </div >
 
   )
 }
+
+
+
 
