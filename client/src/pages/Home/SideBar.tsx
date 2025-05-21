@@ -78,8 +78,8 @@ export default function Sidebar({ children, profile }: SidebarProps) {
               {menuOpen && (
                 <div className="absolute right-0 bottom-full mb-2 w-40 bg-white rounded-md shadow-lg z-50">
                   <ul className="text-sm text-gray-700">
-                    <li className="hover:bg-gray-100 px-4 py-2 cursor-pointer">Profil ansehen</li>
-                    <li className="hover:bg-gray-100 px-4 py-2 cursor-pointer">Abmelden</li>
+                    <li className="hover:bg-gray-100 px-4 py-2 cursor-pointer">Profil settings</li>
+                    <li className="hover:bg-gray-100 px-4 py-2 cursor-pointer">log off</li>
                   </ul>
                 </div>
               )}
