@@ -1,6 +1,7 @@
 import FadeInSection from "../../elements/home/FadeInSection"
 import Sidebar, { SidebarItem } from "./SideBar"
 import { Home, Settings, Bell } from "lucide-react"
+import { Link } from "react-router-dom";
 
 // import side elements
 import ProfileCard from "../../elements/home/ProfileCard"
@@ -12,8 +13,6 @@ import CurriculumVitae from "../../elements/home/CurriclumVitae"
 import skills from "../../assets/data/sampleSkills"
 import projects from "../../assets/data/sampleProjects"
 import workStations from "../../assets/data/sampleWorkStations"
-
-
 
 
 export default function HomePage() {
@@ -31,15 +30,19 @@ export default function HomePage() {
           <h1 className="text-2xl font-bold text-gray-800">Your Profile</h1>
 
           <div className="flex items-right gap-4">
-            <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
-              Edit Profile
-            </button>
+            <Link to="/editProfile">
+              <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
+                Edit Profile
+              </button>
+            </Link>
             <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
               Export CV
             </button>
           </div>
 
+
         </div>
+
 
         {/* Profile Content */}
         <div className="flex-1 overflow-auto p-6">
@@ -71,7 +74,6 @@ export default function HomePage() {
           </FadeInSection>
           <FadeInSection>
             <CurriculumVitae workStations={workStations} />
-
           </FadeInSection>
 
 
@@ -82,6 +84,7 @@ export default function HomePage() {
 
   )
 }
+
 
 
 
