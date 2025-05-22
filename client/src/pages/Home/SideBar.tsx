@@ -49,7 +49,7 @@ export default function Sidebar({ children, profile }: SidebarProps) {
           <ul className="flex-1 px-3">{children}</ul>
         </SidebarContext.Provider>
         <div className="border-t border-gray-800 flex p-3 bg-black relative">
-          <Link to="/profile" className="flex items-center flex-grow overflow-hidden">
+          <Link to="/profile" state={{ profile }} className="flex items-center flex-grow overflow-hidden">
             <img
               src="https://ui-avatars.com/api/?background=888888&color=ffffff&bold=true"
               alt="User avatar"
@@ -78,7 +78,7 @@ export default function Sidebar({ children, profile }: SidebarProps) {
               {menuOpen && (
                 <div className="absolute right-0 bottom-full mb-2 w-40 bg-white rounded-md shadow-lg z-50">
                   <ul className="text-sm text-gray-700">
-                    <Link to="/profileSettings">
+                    <Link to="/profileSettings" state={{ profile }}>
                       <li className="hover:bg-gray-100 px-4 py-2 cursor-pointer">Profil settings</li>
                     </Link>
 

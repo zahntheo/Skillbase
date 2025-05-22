@@ -1,10 +1,14 @@
 import { Home, Settings, Bell } from "lucide-react"
 import Sidebar, { SidebarItem } from "../Home/SideBar"
+import { useLocation } from "react-router-dom";
+import type { Profile } from "../../assets/types/profile";
 
-// import mock data
-import profile from "../../assets/data/sampleProfile"
 
 export default function EditProfile() {
+  
+  // get the profile from the location state
+  const location = useLocation();
+  const profile = location.state?.profile as Profile;
   return (
     <div className="flex h-screen">
 

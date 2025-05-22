@@ -32,7 +32,7 @@ export default function HomePage() {
           <div className="flex items-right gap-4">
 
             {/*Buttons*/}
-            <Link to="/editProfile">
+            <Link to="/editProfile" state={{ profile }}>
               <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
                 Edit Profile
               </button>

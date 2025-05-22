@@ -1,20 +1,32 @@
 import { Home, Settings, Bell } from "lucide-react"
 import Sidebar, { SidebarItem } from "../Home/SideBar"
+import { useLocation } from "react-router-dom";
+import type { Profile } from "../../assets/types/profile";
+
 
 export default function DefaultPage() {
+  
+  // get the profile from the location state
+  const location = useLocation();
+  const profile = location.state?.profile as Profile;
   return (
     <div className="flex h-screen">
-      <Sidebar profile="/profile">
+
+      {/* Sidebar -> add active for active page display*/}
+      <Sidebar profile={profile}>
         <SidebarItem icon={<Home size={20} />} text="Home" to="/home" />
         <SidebarItem icon={<Bell size={20} />} text="Notifications" to="/notifications" />
-        <SidebarItem icon={<Settings size={20} />} text="General Settings" to="/generalSettings" active />
+        <SidebarItem icon={<Settings size={20} />} text="Settings" to="/generalSettings" />
       </Sidebar>
+
+      {/* Main Content */}
       <main className="flex-1 flex flex-col bg-gradient-to-tr from-white to-gray-300">
         <div className="p-6 border-b border-gray-400 flex items-center justify-between">
+          
+          {/* Header */}
           <h1 className="text-2xl font-bold text-gray-800">Default Page</h1>
           <div className="flex gap-4"></div>
         </div>
-
       </main>
     </div>
   );
