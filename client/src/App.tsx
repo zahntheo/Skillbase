@@ -6,6 +6,7 @@ import NotificationsPage from "./pages/Notifications/NotificationPage";
 import GeneralSettingsPage from "./pages/Settings/GeneralSettingsPage";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import EditProfile from "./pages/Profile/EditProfile";
+import ProfileSettings from "./pages/Profile/ProfileSettings";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route path="/generalSettings" element={<GeneralSettingsPage />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/editProfile" element={<EditProfile />} />
+      <Route path="/profileSettings" element={<ProfileSettings />} />
     </Routes>
   );
 }

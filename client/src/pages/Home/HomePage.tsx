@@ -25,7 +25,6 @@ export default function HomePage() {
       </Sidebar>
 
       <main className="flex-1 flex flex-col bg-gradient-to-tr from-white to-gray-300">
-        {/* Top Bar */}
         <div className="p-6 border-b border-gray-400 flex items-center justify-between">
           <h1 className="text-2xl font-bold text-gray-800">Your Profile</h1>
 
