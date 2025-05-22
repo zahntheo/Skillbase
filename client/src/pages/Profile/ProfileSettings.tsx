@@ -7,12 +7,12 @@ import profile from "../../assets/data/sampleProfile"
 export default function ProfileSettings() {
     return (
         <div className="flex h-screen">
-            
+
             {/* Sidebar */}
             <Sidebar profile={profile}>
-                <SidebarItem icon={<Home size={20} />} text="Home" to="/home" />
-                <SidebarItem icon={<Bell size={20} />} text="Notifications" to="/notifications" />
-                <SidebarItem icon={<Settings size={20} />} text="General Settings" to="/generalSettings" />
+                <SidebarItem icon={<Home size={20} />} text="Home" to="/home" profile={profile}  />
+                <SidebarItem icon={<Bell size={20} />} text="Notifications" to="/notifications" profile={profile} />
+                <SidebarItem icon={<Settings size={20} />} text="General Settings" to="/generalSettings" profile={profile} />
             </Sidebar>
 
             {/* Main Content */}

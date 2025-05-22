@@ -14,6 +14,7 @@ interface SidebarItemProps {
   active?: boolean;
   alert?: boolean;
   to: string
+  profile: Profile
 }
 
 interface SidebarContextType {
@@ -96,14 +97,14 @@ export default function Sidebar({ children, profile }: SidebarProps) {
   );
 }
 
-export function SidebarItem({ icon, text, active, alert, to }: SidebarItemProps) {
+export function SidebarItem({ icon, text, active, alert, to , profile}: SidebarItemProps) {
   const context = useContext(SidebarContext);
   if (!context) throw new Error("SidebarItem must be used within a Sidebar");
 
   const { expanded } = context;
 
   return (
-    <Link to={to}>
+    <Link to={to} state={{profile}}>
       <li
         className={`relative flex items-center py-2 px-3 my-1
         font-medium rounded-md cursor-pointer

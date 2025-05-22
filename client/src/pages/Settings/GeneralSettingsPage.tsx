@@ -11,11 +11,10 @@ export default function GeneralSettingsPage() {
 
       {/* Sidebar */}
       <Sidebar profile={profile}>
-        <SidebarItem icon={<Home size={20} />} text="Home" to="/home" />
-        <SidebarItem icon={<Bell size={20} />} text="Notifications" to="/notifications" />
-        <SidebarItem icon={<Settings size={20} />} text="General Settings" to="/generalSettings" active />
+        <SidebarItem icon={<Home size={20} />} text="Home" to="/home" profile={profile} />
+        <SidebarItem icon={<Bell size={20} />} text="Notifications" to="/notifications" profile={profile} />
+        <SidebarItem icon={<Settings size={20} />} text="General Settings" to="/generalSettings" profile={profile} active />
       </Sidebar>
-
       {/* Main Content */}
       <main className="flex-1 flex flex-col bg-gradient-to-tr from-white to-gray-300">
         <div className="p-6 border-b border-gray-400 flex items-center justify-between">
