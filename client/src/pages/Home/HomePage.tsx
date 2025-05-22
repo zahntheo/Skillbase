@@ -18,17 +18,20 @@ import workStations from "../../assets/data/sampleWorkStations"
 export default function HomePage() {
   return (
     <div className="flex h-screen">
+      {/* Sidebar */}
       <Sidebar profile="/profile">
         <SidebarItem icon={<Home size={20} />} text="Home" to="/home" active />
         <SidebarItem icon={<Bell size={20} />} text="Notifications" to="/notifications" />
         <SidebarItem icon={<Settings size={20} />} text="General Settings" to="/generalSettings" />
       </Sidebar>
 
+      {/* Main Content */}
       <main className="flex-1 flex flex-col bg-gradient-to-tr from-white to-gray-300">
         <div className="p-6 border-b border-gray-400 flex items-center justify-between">
+          {/* Header */}
           <h1 className="text-2xl font-bold text-gray-800">Your Profile</h1>
-
           <div className="flex items-right gap-4">
+            {/*Buttons*/}
             <Link to="/editProfile">
               <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
                 Edit Profile
@@ -46,18 +49,17 @@ export default function HomePage() {
         {/* Profile Content */}
         <div className="flex-1 overflow-auto p-6">
           <div className="flex flex-col items-center justify-center mb-4">
-
             <img
               src="/images/profile1.jpg"
               alt="Profile"
               className="w-32 h-32 rounded-full mb-4 ring-4 ring-white shadow-md"
             />
-
             <div className="flex flex-col items-center">
               <h3 className="text-lg font-semibold text-gray-800">John Doe</h3>
               <span className="text-sm text-gray-500">@johndoe</span>
             </div>
           </div>
+          {/* Profile Card */}
           <FadeInSection>
             <ProfileCard
               jobTitle="Software Engineer"
@@ -74,7 +76,6 @@ export default function HomePage() {
           <FadeInSection>
             <CurriculumVitae workStations={workStations} />
           </FadeInSection>
-
 
         </div>
       </main >
