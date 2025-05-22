@@ -4,7 +4,7 @@ import { FaLocationArrow , FaCoffee} from "react-icons/fa";
 
 // define the props for the ProfileCard component
 // The ProfileCard component is a functional component that takes in jobTitle, hobby, and location as props
-interface ProfileCardProps {
+export interface ProfileCardProps {
   jobTitle: string;
   hobby: string;
   location: string;

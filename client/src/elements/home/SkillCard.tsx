@@ -1,11 +1,11 @@
 import React from 'react';
 import { Skill } from '../../assets/types/skills';
 
-interface ProfileCardProps {
+export interface SkillCardProps {
     skills?: Skill[];
 }
 
-const ProfileCard: React.FC<ProfileCardProps> = ({ skills }) => (
+const SkillCard: React.FC<SkillCardProps> = ({ skills }) => (
     <div className="grid grid-cols-2 divide-x divide-gray-200 w-full max-w-5xl mx-auto p-6 bg-white rounded-lg shadow-md">
 
         <div className="pr-6">
@@ -95,4 +95,4 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ skills }) => (
 
 );
 
-export default ProfileCard;
+export default SkillCard;

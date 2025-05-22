@@ -3,7 +3,7 @@ import React from 'react';
 import { WorkStation } from '../../assets/types/workStation';
 
 
-interface WorkStationProps {
+export interface WorkStationProps {
     workStations?: WorkStation[];
 }
 

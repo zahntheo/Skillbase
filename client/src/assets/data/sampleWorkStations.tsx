@@ -1,6 +1,6 @@
 import { WorkStation } from "../types/workStation";
 
-const mockWorkStations: WorkStation[] = [
+const sampleWorkStations: WorkStation[] = [
   {
     id: 1,
     title: "Software Developer",
@@ -59,4 +59,4 @@ const mockWorkStations: WorkStation[] = [
     isPublic: false
   }
 ];
-export default mockWorkStations;
+export default sampleWorkStations;

@@ -10,9 +10,8 @@ import ProjectCard from "../../elements/home/ProjectCard"
 import CurriculumVitae from "../../elements/home/CurriclumVitae"
 
 // import mock data
-import skills from "../../assets/data/sampleSkills"
-import projects from "../../assets/data/sampleProjects"
-import workStations from "../../assets/data/sampleWorkStations"
+import profile from "../../assets/data/sampleProfile"
+
 
 
 export default function HomePage() {
@@ -50,31 +49,31 @@ export default function HomePage() {
         <div className="flex-1 overflow-auto p-6">
           <div className="flex flex-col items-center justify-center mb-4">
             <img
-              src="/images/profile1.jpg"
+              src={profile.profilePicture}
               alt="Profile"
               className="w-32 h-32 rounded-full mb-4 ring-4 ring-white shadow-md"
             />
             <div className="flex flex-col items-center">
-              <h3 className="text-lg font-semibold text-gray-800">John Doe</h3>
-              <span className="text-sm text-gray-500">@johndoe</span>
+              <h3 className="text-lg font-semibold text-gray-800">{profile.user.name}</h3>
+              <span className="text-sm text-gray-500">@{profile.user.userName}</span>
             </div>
           </div>
           {/* Profile Card */}
           <FadeInSection>
             <ProfileCard
-              jobTitle="Software Engineer"
-              hobby="Loves coding and coffee"
-              location="Based in San Francisco"
+              jobTitle={profile.card.jobTitle}
+              hobby={profile.card.hobby}
+              location={profile.card.location}
             />
           </FadeInSection>
           <FadeInSection>
-            <SkillCard skills={skills} />
+            <SkillCard skills={profile.skills} />
           </FadeInSection>
           <FadeInSection>
-            <ProjectCard projects={projects} />
+            <ProjectCard projects={profile.projects} />
           </FadeInSection>
           <FadeInSection>
-            <CurriculumVitae workStations={workStations} />
+            <CurriculumVitae workStations={profile.workStations} />
           </FadeInSection>
 
         </div>

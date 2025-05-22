@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { Project } from '../../assets/types/projects';
+import { Project } from '../../assets/types/project';
 
 import { MdWork } from "react-icons/md";
 import { FaLocationArrow } from "react-icons/fa";
 import { TbCalendarDue } from "react-icons/tb";
 
-interface ProjectCardProps {
+export interface ProjectCardProps {
     projects?: Project[];
 }
 
