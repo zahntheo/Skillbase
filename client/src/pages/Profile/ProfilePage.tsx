@@ -1,12 +1,15 @@
 import { Home, Settings, Bell } from "lucide-react"
 import Sidebar, { SidebarItem } from "../Home/SideBar"
 
+// import mock data
+import profile from "../../assets/data/sampleProfile"
+
 export default function GeneralSettingsPage() {
   return (
     <div className="flex h-screen">
 
       {/* Sidebar */}
-      <Sidebar profile="/profile">
+      <Sidebar profile={profile}>
         <SidebarItem icon={<Home size={20} />} text="Home" to="/home" />
         <SidebarItem icon={<Bell size={20} />} text="Notifications" to="/notifications" />
         <SidebarItem icon={<Settings size={20} />} text="Settings" to="/generalSettings" />

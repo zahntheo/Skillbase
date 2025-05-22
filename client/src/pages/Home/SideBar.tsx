@@ -1,10 +1,11 @@
 import { ReactNode, useState, createContext, useContext } from "react";
 import { ChevronFirst, ChevronLast, MoreVertical } from "lucide-react";
 import { Link } from "react-router-dom";
+import type { Profile } from "../../assets/types/profile";
 
 interface SidebarProps {
   children: ReactNode;
-  profile: string
+  profile: Profile
 }
 
 interface SidebarItemProps {
@@ -48,7 +49,7 @@ export default function Sidebar({ children, profile }: SidebarProps) {
           <ul className="flex-1 px-3">{children}</ul>
         </SidebarContext.Provider>
         <div className="border-t border-gray-800 flex p-3 bg-black relative">
-          <Link to={profile} className="flex items-center flex-grow overflow-hidden">
+          <Link to="/profile" className="flex items-center flex-grow overflow-hidden">
             <img
               src="https://ui-avatars.com/api/?background=888888&color=ffffff&bold=true"
               alt="User avatar"
@@ -59,8 +60,8 @@ export default function Sidebar({ children, profile }: SidebarProps) {
                 }`}
             >
               <div className="leading-4 text-white">
-                <h4 className="font-semibold">John Doe</h4>
-                <span className="text-xs text-gray-400">johndoe@gmail.com</span>
+                <h4 className="font-semibold">{profile.user.name}</h4>
+                <span className="text-xs text-gray-400">{profile.user.email}</span>
               </div>
             </div>
           </Link>

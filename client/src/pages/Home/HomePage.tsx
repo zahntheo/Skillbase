@@ -13,12 +13,11 @@ import CurriculumVitae from "../../elements/home/CurriclumVitae"
 import profile from "../../assets/data/sampleProfile"
 
 
-
 export default function HomePage() {
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
-      <Sidebar profile="/profile">
+      <Sidebar profile={profile}>
         <SidebarItem icon={<Home size={20} />} text="Home" to="/home" active />
         <SidebarItem icon={<Bell size={20} />} text="Notifications" to="/notifications" />
         <SidebarItem icon={<Settings size={20} />} text="General Settings" to="/generalSettings" />
@@ -27,9 +26,11 @@ export default function HomePage() {
       {/* Main Content */}
       <main className="flex-1 flex flex-col bg-gradient-to-tr from-white to-gray-300">
         <div className="p-6 border-b border-gray-400 flex items-center justify-between">
+
           {/* Header */}
           <h1 className="text-2xl font-bold text-gray-800">Your Profile</h1>
           <div className="flex items-right gap-4">
+
             {/*Buttons*/}
             <Link to="/editProfile">
               <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
@@ -58,6 +59,7 @@ export default function HomePage() {
               <span className="text-sm text-gray-500">@{profile.user.userName}</span>
             </div>
           </div>
+
           {/* Profile Card */}
           <FadeInSection>
             <ProfileCard
@@ -66,6 +68,8 @@ export default function HomePage() {
               location={profile.card.location}
             />
           </FadeInSection>
+
+          {/* Skills, Projects, and Workstations */}
           <FadeInSection>
             <SkillCard skills={profile.skills} />
           </FadeInSection>
