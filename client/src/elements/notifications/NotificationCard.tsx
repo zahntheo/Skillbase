@@ -14,7 +14,8 @@ export default function NotificationCard({ notification }: Props) {
         <img
           src={notification.senderProfilePicture}
           alt={notification.senderName}
-          className="w-12 h-12 rounded-full ring-2 ring-indigo-500"
+          className="w-12 h-12 rounded-full ring-2 ring-white shadow-sm"
+          loading="lazy"
         />
         <div>
           <h3 className="text-md font-semibold">{notification.senderName}</h3>

@@ -5,9 +5,10 @@ import type { Profile } from "../../assets/types/profile";
 import NotificationCard from "../../elements/notifications/NotificationCard";
 
 // import mock data
-import sampleNotifications from "../../assets/data/sampleNotifications";   
+import sampleNotifications from "../../assets/data/sampleNotifications";
 
 export default function NotfificationPage() {
+    const groupedNotification = groupByDate(sampleNotifications);
     const location = useLocation();
     const profile = location.state?.profile as Profile;
     return (
@@ -42,12 +43,17 @@ export default function NotfificationPage() {
                 <div className="flex-1 overflow-auto p-6">
                     <div className="flex flex-col items-center justify-center mb-4">
 
-                        {/* Notification Cards */}
-                        {sampleNotifications.map((notification) => (
-                            <NotificationCard
-                                notification={notification}
-                            />
+                        {Object.entries(groupedNotification).map(([key, notifications]) => (
+                            <div key={key} className="w-full max-w-2xl mb-6">
+                                <h2>{key}</h2> 
+                                <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-800"></hr>
+                                {notifications.map((notification) => (
+                                    <NotificationCard key={notification.id} notification={notification} />
+                                ))}
+                            </div>
                         ))}
+
+
 
                     </div>
                 </div>
@@ -57,3 +63,23 @@ export default function NotfificationPage() {
 
     );
 };
+
+function groupByDate(notifications: any[]) {
+    const groupedNotifications: { [key: string]: any[] } = {};
+
+    notifications.forEach(notification => {
+        const date = new Date(notification.timestamp);
+        const month = (date.getMonth() + 1).toString().padStart(2, "0");
+        const year = date.getFullYear();
+
+        const key = `${year}-${month}`;
+
+        if (!groupedNotifications[key]) {
+            groupedNotifications[key] = [];
+        }
+
+        groupedNotifications[key].push(notification);
+    });
+
+    return groupedNotifications;
+}
