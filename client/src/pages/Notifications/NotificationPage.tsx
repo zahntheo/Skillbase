@@ -34,7 +34,7 @@ export default function NotfificationPage() {
                     {/* Header */}
                     <h1 className="text-2xl font-bold text-gray-800">Your Notifications</h1>
 
-                    <form className="relative w-[300px] ml-auto">
+                    <form className="relative w-[300px] ml-20">
                             <input
                                 type="search"
                                 placeholder="Search..."
