@@ -20,8 +20,8 @@ export default function HomePage() {
       {/* Sidebar */}
       <Sidebar profile={profile}>
         <SidebarItem icon={<Home size={20} />} text="Home" to="/home" profile={profile} active />
-        <SidebarItem icon={<Bell size={20} />} text="Notifications" to="/notifications" profile={profile}/>
-        <SidebarItem icon={<Settings size={20} />} text="General Settings" to="/generalSettings" profile={profile}/>
+        <SidebarItem icon={<Bell size={20} />} text="Notifications" to="/notifications" profile={profile} />
+        <SidebarItem icon={<Settings size={20} />} text="General Settings" to="/generalSettings" profile={profile} />
       </Sidebar>
 
       {/* Main Content */}
@@ -34,6 +34,7 @@ export default function HomePage() {
 
             {/*Buttons*/}
             <Link to="/editProfile" state={{ profile }}>
+
               <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
                 Edit Profile
               </button>
@@ -42,7 +43,7 @@ export default function HomePage() {
               Export CV
             </button>
           </div>
-          
+
 
         </div>
 
