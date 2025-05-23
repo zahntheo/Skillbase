@@ -2,6 +2,8 @@ import FadeInSection from "../../elements/home/FadeInSection"
 import Sidebar, { SidebarItem } from "./SideBar"
 import { Home, Settings, Bell } from "lucide-react"
 import { Link } from "react-router-dom";
+import { FiEdit } from "react-icons/fi";
+import { PiExportBold } from "react-icons/pi";
 
 // import side elements
 import ProfileCard from "../../elements/home/ProfileCard"
@@ -19,8 +21,8 @@ export default function HomePage() {
       {/* Sidebar */}
       <Sidebar profile={profile}>
         <SidebarItem icon={<Home size={20} />} text="Home" to="/home" profile={profile} active />
-        <SidebarItem icon={<Bell size={20} />} text="Notifications" to="/notifications" profile={profile}/>
-        <SidebarItem icon={<Settings size={20} />} text="General Settings" to="/generalSettings" profile={profile}/>
+        <SidebarItem icon={<Bell size={20} />} text="Notifications" to="/notifications" profile={profile} />
+        <SidebarItem icon={<Settings size={20} />} text="General Settings" to="/generalSettings" profile={profile} />
       </Sidebar>
 
       {/* Main Content */}
@@ -33,13 +35,16 @@ export default function HomePage() {
 
             {/*Buttons*/}
             <Link to="/editProfile" state={{ profile }}>
-              <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
-                Edit Profile
+              <button className="bg-gray-800 text-white w-[120px] h-[55px] flex items-center justify-center rounded-xl shadow-sm hover:bg-gray-700 transition">
+                <FiEdit className="text-white w-5 h-5" />
               </button>
             </Link>
-            <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
+
+            <button className="bg-gray-800 text-white w-[120px] h-[55px] flex items-center justify-center rounded-xl shadow-sm hover:bg-gray-700 transition">
               Export CV
             </button>
+
+
           </div>
 
 
