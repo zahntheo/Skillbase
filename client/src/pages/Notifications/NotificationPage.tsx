@@ -5,6 +5,7 @@ import type { Profile } from "../../assets/types/profile";
 import NotificationCard from "../../elements/notifications/NotificationCard";
 import FadeInSection from "../../elements/home/FadeInSection"
 import { FaFilter } from "react-icons/fa";
+import { FiChevronDown } from "react-icons/fi";
 
 // import mock data
 import sampleNotifications from "../../assets/data/sampleNotifications";
@@ -35,7 +36,7 @@ export default function NotfificationPage() {
                     <div className="flex items-right gap-4">
                         {/*Buttons*/}
                         <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
-                            Select
+                            <FiChevronDown  className="text-white"/> 
                         </button>
                         <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
                             <FaFilter className="text-white"/>

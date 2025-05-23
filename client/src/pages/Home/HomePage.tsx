@@ -3,6 +3,7 @@ import Sidebar, { SidebarItem } from "../../elements/home/SideBar"
 import { Home, Settings, Bell } from "lucide-react"
 import { Link } from "react-router-dom";
 
+
 // import side elements
 import ProfileCard from "../../elements/home/ProfileCard"
 import SkillCard from "../../elements/home/SkillCard"
@@ -35,11 +36,11 @@ export default function HomePage() {
             {/*Buttons*/}
             <Link to="/editProfile" state={{ profile }}>
 
-              <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
+              <button className="bg-gray-800 text-white px-5 py-2.5 h-[55px] rounded-xl shadow-sm hover:bg-gray-700 transition">
                 Edit Profile
               </button>
             </Link>
-            <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
+            <button className="bg-gray-800 text-white px-5 py-2.5 h-[55px] rounded-xl shadow-sm hover:bg-gray-700 transition">
               Export CV
             </button>
           </div>
