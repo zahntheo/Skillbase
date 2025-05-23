@@ -7,6 +7,7 @@ import NotificationCard from "../../elements/notifications/NotificationCard";
 // import mock data
 import sampleNotifications from "../../assets/data/sampleNotifications";
 
+
 export default function NotfificationPage() {
     const groupedNotification = groupByDate(sampleNotifications);
     const location = useLocation();
@@ -43,15 +44,19 @@ export default function NotfificationPage() {
                 <div className="flex-1 overflow-auto p-6">
                     <div className="flex flex-col items-center justify-center mb-4">
 
-                        {Object.entries(groupedNotification).map(([key, notifications]) => (
-                            <div key={key} className="w-full max-w-2xl mb-6">
-                                <h2>{key}</h2> 
-                                <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-800"></hr>
-                                {notifications.map((notification) => (
-                                    <NotificationCard key={notification.id} notification={notification} />
-                                ))}
-                            </div>
-                        ))}
+                        {/* Notification Cards */}
+                        {/* Group notifications by date */}
+                        {Object.entries(groupedNotification)
+                            .sort(([a], [b]) => b.localeCompare(a)) 
+                            .map(([key, notifications]) => (
+                                <div key={key} className="w-full max-w-2xl mb-6">
+                                    <h2>{key}</h2>
+                                    <hr className="h-px my-8 bg-gray-300 border-0 dark:bg-gray-800"></hr>
+                                    {notifications.map((notification) => (
+                                        <NotificationCard key={notification.id} notification={notification} />
+                                    ))}
+                                </div>
+                            ))}
 
 
 
@@ -82,4 +87,8 @@ function groupByDate(notifications: any[]) {
     });
 
     return groupedNotifications;
+
+
+
 }
+
