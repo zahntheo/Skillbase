@@ -3,6 +3,7 @@ import Sidebar, { SidebarItem } from "../../elements/home/SideBar"
 import { useLocation } from "react-router-dom";
 import type { Profile } from "../../assets/types/profile";
 import NotificationCard from "../../elements/notifications/NotificationCard";
+import FadeInSection from "../../elements/home/FadeInSection"
 
 // import mock data
 import sampleNotifications from "../../assets/data/sampleNotifications";
@@ -47,13 +48,17 @@ export default function NotfificationPage() {
                         {/* Notification Cards */}
                         {/* Group notifications by date */}
                         {Object.entries(groupedNotification)
-                            .sort(([a], [b]) => b.localeCompare(a)) 
+                            .sort(([a], [b]) => b.localeCompare(a))
                             .map(([key, notifications]) => (
                                 <div key={key} className="w-full max-w-2xl mb-6">
                                     <h2>{key}</h2>
                                     <hr className="h-px my-8 bg-gray-300 border-0 dark:bg-gray-800"></hr>
                                     {notifications.map((notification) => (
-                                        <NotificationCard key={notification.id} notification={notification} />
+
+                                        // FadeInSection for each notification
+                                        <FadeInSection>
+                                            <NotificationCard key={notification.id} notification={notification} />
+                                        </FadeInSection>
                                     ))}
                                 </div>
                             ))}
@@ -69,6 +74,13 @@ export default function NotfificationPage() {
     );
 };
 
+// Function to group notifications by date
+// This function takes an array of notifications and groups them by month and year
+// It returns an object where the keys are the month-year strings and the values are arrays of notifications
+// The function uses the Date object to extract the month and year from the notification's timestamp
+// The month is formatted to be two digits (e.g., "01" for January) using padStart
+// The year is extracted using getFullYear
+// The function checks if the key already exists in the groupedNotifications object
 function groupByDate(notifications: any[]) {
     const groupedNotifications: { [key: string]: any[] } = {};
 

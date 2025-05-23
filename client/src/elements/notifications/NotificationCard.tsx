@@ -8,7 +8,7 @@ interface Props {
 
 export default function NotificationCard({ notification }: Props) {
   return (
-    <div className="bg-white shadow-md rounded-xl p-4 mb-4 w-full max-w-xl">
+    <div className="bg-white rounded-xl p-4 mb-4 w-full max-w-xl shadow transform transition duration-300 ease-in-out hover:scale-105 hover:shadow-lg ">
       {/* Sender Info */}
       <div className="flex items-center space-x-4 mb-3">
         <img

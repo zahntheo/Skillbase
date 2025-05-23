@@ -1,3 +1,14 @@
 @import "tailwindcss";
 
 
+/* In deiner globalen CSS-Datei oder index.css */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(70px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
