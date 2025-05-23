@@ -1,5 +1,5 @@
 import { Home, Settings, Bell } from "lucide-react"
-import Sidebar, { SidebarItem } from "../Home/SideBar"
+import Sidebar, { SidebarItem } from "../../elements/home/SideBar"
 import { useLocation } from "react-router-dom";
 import type { Profile } from "../../assets/types/profile";
 

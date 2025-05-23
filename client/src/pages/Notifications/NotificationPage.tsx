@@ -1,8 +1,8 @@
 import { Home, Settings, Bell } from "lucide-react"
-import Sidebar, { SidebarItem } from "../Home/SideBar"
+import Sidebar, { SidebarItem } from "../../elements/home/SideBar"
 import { useLocation } from "react-router-dom";
 import type { Profile } from "../../assets/types/profile";
-import NotificationCard from "./NotificationCard";
+import NotificationCard from "../../elements/notifications/NotificationCard";
 
 // import mock data
 import sampleNotifications from "../../assets/data/sampleNotifications";   
