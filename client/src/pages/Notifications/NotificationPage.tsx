@@ -30,11 +30,14 @@ export default function NotfificationPage() {
 
             {/* Main Content */}
             <main className="flex-1 relative flex flex-col bg-gradient-to-tr from-white to-gray-300 pt-24 overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 p-6 border-b border-gray-400 flex items-center justify-between  z-10">
-                    {/* Header */}
-                    <h1 className="text-2xl font-bold text-gray-800">Your Notifications</h1>
+                <div className="absolute top-0 left-0 right-0 p-6 border-b border-gray-400 flex items-center justify-between backdrop-filter backdrop-blur-lg bg-white/30 bg-opacity-30 z-10">
 
-                    <form className="relative w-[300px] ml-20">
+                    {/* Left: Title */}
+                    <h1 className="text-2xl font-bold text-gray-800 flex-shrink-0">Your Notifications</h1>
+
+                    {/* Middle: Searchbar */}
+                    <div className="absolute left-1/2 transform -translate-x-1/2">
+                        <form className="relative w-[300px]">
                             <input
                                 type="search"
                                 placeholder="Search..."
@@ -56,21 +59,16 @@ export default function NotfificationPage() {
                                 </svg>
                             </div>
                         </form>
+                    </div>
 
-                    <div className="flex items-center gap-4 ml-auto">
-                        {/* Buttons */}
+                    {/* Right: Buttons */}
+                    <div className="flex items-center gap-4 flex-shrink-0">
                         <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
                             <FiChevronDown className="text-white" />
                         </button>
-
-                        <button
-                            className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition"
-                        >
+                        <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
                             <FaFilter className="text-white" />
                         </button>
-
-                        {/* Searchbar */}
-                        
                     </div>
                 </div>
 
