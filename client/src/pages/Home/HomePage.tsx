@@ -35,14 +35,15 @@ export default function HomePage() {
 
             {/*Buttons*/}
             <Link to="/editProfile" state={{ profile }}>
-              <button className="bg-gray-800 text-white w-[120px] h-[55px] flex items-center justify-center rounded-xl shadow-sm hover:bg-gray-700 transition">
+              <button className="bg-gray-800 text-white h-[55px] flex items-center justify-center rounded-xl shadow-sm hover:bg-gray-700 transition px-4">
                 <FiEdit className="text-white w-5 h-5" />
               </button>
             </Link>
 
-            <button className="bg-gray-800 text-white w-[120px] h-[55px] flex items-center justify-center rounded-xl shadow-sm hover:bg-gray-700 transition">
+            <button className="bg-gray-800 text-white h-[55px] px-5 flex items-center justify-center rounded-xl shadow-sm hover:bg-gray-700 transition">
               Export CV
             </button>
+
 
 
           </div>
