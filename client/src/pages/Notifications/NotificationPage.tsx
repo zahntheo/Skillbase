@@ -7,6 +7,7 @@ import FadeInSection from "../../elements/home/FadeInSection"
 import { FaFilter } from "react-icons/fa";
 import { FiChevronDown } from "react-icons/fi";
 
+
 // import mock data
 import sampleNotifications from "../../assets/data/sampleNotifications";
 
@@ -28,23 +29,52 @@ export default function NotfificationPage() {
             </Sidebar>
 
             {/* Main Content */}
-            <main className="flex-1 flex flex-col bg-gradient-to-tr from-white to-gray-300">
-                <div className="p-6 border-b border-gray-400 flex items-center justify-between bg-white/10 ">
-
+            <main className="flex-1 relative flex flex-col bg-gradient-to-tr from-white to-gray-300 pt-24 overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 p-6 border-b border-gray-400 flex items-center justify-between  z-10">
                     {/* Header */}
-                    <h1 className="text-2xl font-bold text-gray-800">Youre Notifications</h1>
-                    <div className="flex items-right gap-4">
-                        {/*Buttons*/}
+                    <h1 className="text-2xl font-bold text-gray-800">Your Notifications</h1>
+
+                    <form className="relative w-[300px] ml-auto">
+                            <input
+                                type="search"
+                                placeholder="Search..."
+                                className="w-full px-4 py-2 pl-10 text-sm text-white bg-gray-800 border-none rounded-xl shadow-sm placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600"
+                            />
+                            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg
+                                    className="w-4 h-4 text-gray-300"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M21 21l-4.35-4.35M16 10a6 6 0 11-12 0 6 6 0 0112 0z"
+                                    />
+                                </svg>
+                            </div>
+                        </form>
+
+                    <div className="flex items-center gap-4 ml-auto">
+                        {/* Buttons */}
                         <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
-                            <FiChevronDown  className="text-white"/> 
-                        </button>
-                        <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
-                            <FaFilter className="text-white"/>
+                            <FiChevronDown className="text-white" />
                         </button>
 
+                        <button
+                            className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition"
+                        >
+                            <FaFilter className="text-white" />
+                        </button>
 
+                        {/* Searchbar */}
+                        
                     </div>
                 </div>
+
+
 
                 {/* Notification Content */}
                 <div className="flex-1 overflow-auto p-6">
@@ -73,8 +103,8 @@ export default function NotfificationPage() {
                     </div>
                 </div>
 
-            </main>
-        </div>
+            </main >
+        </div >
 
     );
 };
