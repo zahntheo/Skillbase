@@ -63,9 +63,9 @@ export default function NotfificationPage() {
 
                     {/* Right: Buttons */}
                     <div className="flex items-center gap-4 flex-shrink-0">
-                        <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
-                            <FiChevronDown className="text-white" />
-                        </button>
+                            <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
+                                <FiChevronDown className="text-white" />
+                            </button>
                         <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
                             <FaFilter className="text-white" />
                         </button>
@@ -76,16 +76,16 @@ export default function NotfificationPage() {
 
                 {/* Notification Content */}
                 <div className="flex-1 overflow-auto p-6">
-                    <div className="flex flex-col items-center justify-center mb-4">
+                    <div className="flex flex-col items-center justify-center  mb-4">
 
                         {/* Notification Cards */}
                         {/* Group notifications by date */}
                         {Object.entries(groupedNotification)
                             .sort(([a], [b]) => b.localeCompare(a))
                             .map(([key, notifications]) => (
-                                <div key={key} className="w-full max-w-2xl mb-6">
+                                <div key={key} className="w-full max-w-xl mb-6 h-screen flex flex-col items-center">
                                     <h2>{key}</h2>
-                                    <hr className="h-px my-8 bg-gray-300 border-0 dark:bg-gray-800"></hr>
+                                    <hr className="w-full h-px my-8 bg-gray-300 border-0 dark:bg-gray-800" />
                                     {notifications.map((notification) => (
 
                                         // FadeInSection for each notification
