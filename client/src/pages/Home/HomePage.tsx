@@ -1,9 +1,10 @@
 import FadeInSection from "../../elements/home/FadeInSection"
-import Sidebar, { SidebarItem } from "./SideBar"
+import Sidebar, { SidebarItem } from "../../elements/home/SideBar"
 import { Home, Settings, Bell } from "lucide-react"
 import { Link } from "react-router-dom";
 import { FiEdit } from "react-icons/fi";
 import { PiExportBold } from "react-icons/pi";
+
 
 // import side elements
 import ProfileCard from "../../elements/home/ProfileCard"
@@ -13,6 +14,7 @@ import CurriculumVitae from "../../elements/home/CurriclumVitae"
 
 // import mock data
 import profile from "../../assets/data/sampleProfile"
+
 
 
 export default function HomePage() {
@@ -26,7 +28,7 @@ export default function HomePage() {
       </Sidebar>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col bg-gradient-to-tr from-white to-gray-300">
+      <main className="flex-1 flex flex-col bg-gradient-to-tr from-white to-gray-300 ">
         <div className="p-6 border-b border-gray-400 flex items-center justify-between">
 
           {/* Header */}
