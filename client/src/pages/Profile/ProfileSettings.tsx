@@ -1,5 +1,5 @@
 import { Home, Settings, Bell } from "lucide-react"
-import Sidebar, { SidebarItem } from "../Home/SideBar"
+import Sidebar, { SidebarItem } from "../../elements/home/SideBar"
 
 // import mock data
 import profile from "../../assets/data/sampleProfile"

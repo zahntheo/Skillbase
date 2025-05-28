@@ -1,15 +1,86 @@
 import { Home, Settings, Bell } from "lucide-react"
-import Sidebar, { SidebarItem } from "../Home/SideBar"
+import Sidebar, { SidebarItem } from "../../elements/home/SideBar"
 import { useLocation } from "react-router-dom";
 import type { Profile } from "../../assets/types/profile";
-import NotificationCard from "./NotificationCard";
+import NotificationCard from "../../elements/notifications/NotificationCard";
+import FadeInSection from "../../elements/home/FadeInSection"
+import { FaFilter } from "react-icons/fa";
+import { FiChevronDown } from "react-icons/fi";
+import { useState, useRef, useEffect } from "react";
+import { MdRadioButtonUnchecked, MdCheck } from "react-icons/md"
+import { FaArchive } from "react-icons/fa";
+import { FaDisplay } from "react-icons/fa6";
+
+// Variables for Filter
+const timeOptions = ["Today", "Last 7 days", "This month"];
+const readStatusOptions = ["All", "Unread", "Read"];
+const sortOptions = ["Newest first", "Oldest first"];
+
+
 
 // import mock data
-import sampleNotifications from "../../assets/data/sampleNotifications";   
+import sampleNotifications from "../../assets/data/sampleNotifications";
+
 
 export default function NotfificationPage() {
+    // Group Notifications by date
+    const groupedNotification = groupByDate(sampleNotifications);
+
+    // Get profile from logged in user
     const location = useLocation();
     const profile = location.state?.profile as Profile;
+
+    // Handle dropdown and menu 
+    const [isOpenDDM, setIsOpenDDM] = useState(false);
+    const dropdownRef = useRef(null);
+    const [isOpenFM, setIsOpenFM] = useState(false);
+    const filterRef = useRef(null);
+
+    // Hock for automation of dropdown closing
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (dropdownRef.current && !(dropdownRef.current as any).contains(event.target)) {
+                setIsOpenDDM(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (filterRef.current && !(filterRef.current as any).contains(event.target)) {
+                setIsOpenFM(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
+
+    const [selectedTime, setSelectedTime] = useState("Last 7 days");
+    const [selectedStatus, setSelectedStatus] = useState("All");
+    const [selectedSort, setSelectedSort] = useState("Newest first");
+
+    const renderOption = (options: string[], selected: string, setSelected: (option: string) => void) =>
+        options.map((option) => (
+            <button
+                key={option}
+                onClick={() => setSelected(option)}
+                className={`flex items-center w-full gap-2 px-4 py-2 text-sm text-left ${selected === option
+                    ? "bg-blue-50 text-blue-700"
+                    : "text-gray-700 hover:bg-gray-100"
+                    }`}
+            >
+                {selected === option ? (
+                    <MdCheck className="text-blue-600" />
+                ) : (
+                    <MdRadioButtonUnchecked className="text-gray-400" />
+                )}
+                <span>{option}</span>
+            </button>
+        ));
+
     return (
         <div className="flex h-screen">
 
@@ -23,37 +94,182 @@ export default function NotfificationPage() {
             </Sidebar>
 
             {/* Main Content */}
-            <main className="flex-1 flex flex-col bg-gradient-to-tr from-white to-gray-300">
-                <div className="p-6 border-b border-gray-400 flex items-center justify-between">
+            <main className="flex-1 relative flex flex-col bg-gradient-to-tr from-white to-gray-300 pt-24 overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 p-6 border-b border-gray-400 flex items-center justify-between backdrop-filter backdrop-blur-lg bg-white/30 bg-opacity-30 z-10">
 
-                    {/* Header */}
-                    <h1 className="text-2xl font-bold text-gray-800">Youre Notifications</h1>
-                    <div className="flex items-right gap-4">
-                        {/*Buttons*/}
-                        <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
-                            Mark Notfications
-                        </button>
+                    {/* Left: Title */}
+                    <h1 className="text-2xl font-bold text-gray-800 flex-shrink-0">Your Notifications</h1>
+
+                    {/* Middle: Searchbar */}
+                    <div className="absolute left-1/2 transform -translate-x-1/2">
+                        <form className="relative w-[300px]">
+                            <input
+                                type="search"
+                                placeholder="Search..."
+                                className="w-full px-4 py-2 pl-10 text-sm text-white bg-gray-800 border-none rounded-xl shadow-sm placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-600"
+                            />
+                            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg
+                                    className="w-4 h-4 text-gray-300"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M21 21l-4.35-4.35M16 10a6 6 0 11-12 0 6 6 0 0112 0z"
+                                    />
+                                </svg>
+                            </div>
+                        </form>
+                    </div>
+
+                    {/* Right: Buttons */}
+                    <div className="flex items-center gap-4 flex-shrink-0">
+                        <div className="relative inline-block text-left" ref={dropdownRef}>
+                            <button
+                                onClick={() => setIsOpenDDM(!isOpenDDM)}
+                                className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition flex items-center gap-2"
+                            >
+                                <FiChevronDown className={`transition-transform ${isOpenDDM ? "rotate-180" : ""}`} />
+                            </button>
+
+                            {/* Dropdown Menu*/}
+                            {/* If open display menu items */}
+                            {isOpenDDM && (
+                                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                                    <a
+                                        href="#"
+                                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                    >
+                                        <MdRadioButtonUnchecked className="text-gray-500" />
+                                        <span>Select</span>
+                                    </a>
+
+                                    <a
+                                        href="#"
+                                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                    >
+                                        <FaArchive className="text-gray-500" />
+                                        <span>Archive</span>
+                                    </a>
+                                    <a
+                                        href="#"
+                                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                    >
+                                        <FaDisplay className="text-gray-500" />
+                                        <span>Display Settings</span>
+                                    </a>
+                                </div>
+
+                            )}
+                        </div>
+
+                        {/*Filter Menu */}
+                        <div className="relative inline-block text-left" ref={filterRef}>
+                            <button
+                                onClick={() => setIsOpenFM(!isOpenFM)}
+                                className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition flex items-center gap-2"
+                            >
+                                <FaFilter className="text-white" />
+                            </button>
+                            {/* Dropdown Menu*/}
+                            {/* If open display menu items */}
+                            {isOpenFM && (
+                                <div className="absolute right-0 mt-2 w-64 bg-white border border-gray-200 rounded-xl shadow-lg z-50">
+                                    <div className="px-4 py-2 text-xs text-gray-500 uppercase tracking-wide">
+                                        Filter by status
+                                    </div>
+                                    <div className="divide-y divide-gray-100">
+                                        {renderOption(readStatusOptions, selectedStatus, setSelectedStatus)}
+                                    </div>
+
+                                    <div className="px-4 py-2 text-xs text-gray-500 uppercase tracking-wide">
+                                        Filter by time
+                                    </div>
+                                    <div className="divide-y divide-gray-100">
+                                        {renderOption(timeOptions, selectedTime, setSelectedTime)}
+                                    </div>
+
+                                    <div className="px-4 py-2 text-xs text-gray-500 uppercase tracking-wide">
+                                        Sort by
+                                    </div>
+                                    <div className="divide-y divide-gray-100 mb-2">
+                                        {renderOption(sortOptions, selectedSort, setSelectedSort)}
+                                    </div>
+                                </div>
+
+                            )}
+                        </div>
 
 
                     </div>
                 </div>
+
+
 
                 {/* Notification Content */}
                 <div className="flex-1 overflow-auto p-6">
-                    <div className="flex flex-col items-center justify-center mb-4">
+                    <div className="flex flex-col items-center justify-center  mb-4">
 
                         {/* Notification Cards */}
-                        {sampleNotifications.map((notification) => (
-                            <NotificationCard
-                                notification={notification}
-                            />
-                        ))}
+                        {/* Group notifications by date */}
+                        {Object.entries(groupedNotification)
+                            .sort(([a], [b]) => b.localeCompare(a))
+                            .map(([key, notifications]) => (
+                                <div key={key} className="w-full max-w-xl mb-3 flex flex-col items-center">
+                                    <h2>{key}</h2>
+                                    <hr className="w-full h-px my-8 bg-gray-300 border-0 dark:bg-gray-800" />
+                                    {notifications.map((notification) => (
+
+                                        // FadeInSection for each notification
+                                        <FadeInSection>
+                                            <NotificationCard key={notification.id} notification={notification} />
+                                        </FadeInSection>
+                                    ))}
+                                </div>
+                            ))}
+
+
 
                     </div>
                 </div>
 
-            </main>
-        </div>
+            </main >
+        </div >
 
     );
 };
+
+// Function to group notifications by date
+// This function takes an array of notifications and groups them by month and year
+// It returns an object where the keys are the month-year strings and the values are arrays of notifications
+// The function uses the Date object to extract the month and year from the notification's timestamp
+// The month is formatted to be two digits (e.g., "01" for January) using padStart
+// The year is extracted using getFullYear
+// The function checks if the key already exists in the groupedNotifications object
+function groupByDate(notifications: any[]) {
+    const groupedNotifications: { [key: string]: any[] } = {};
+
+    notifications.forEach(notification => {
+        const date = new Date(notification.timestamp);
+        const month = (date.getMonth() + 1).toString().padStart(2, "0");
+        const year = date.getFullYear();
+
+        const key = `${year}-${month}`;
+
+        if (!groupedNotifications[key]) {
+            groupedNotifications[key] = [];
+        }
+
+        groupedNotifications[key].push(notification);
+    });
+
+    return groupedNotifications;
+
+
+
+}
+

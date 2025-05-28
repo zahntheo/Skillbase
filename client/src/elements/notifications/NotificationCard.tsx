@@ -8,13 +8,15 @@ interface Props {
 
 export default function NotificationCard({ notification }: Props) {
   return (
-    <div className="bg-white shadow-md rounded-xl p-4 mb-4 w-full max-w-xl">
+    <div className="bg-white rounded-xl p-4 mb-5 mt-5 w-100 shadow transform transition duration-300 ease-in-out hover:scale-105 hover:shadow-lg ">
+      
       {/* Sender Info */}
       <div className="flex items-center space-x-4 mb-3">
         <img
           src={notification.senderProfilePicture}
           alt={notification.senderName}
-          className="w-12 h-12 rounded-full ring-2 ring-indigo-500"
+          className="w-12 h-12 rounded-full ring-2 ring-white shadow-sm"
+          loading="lazy"
         />
         <div>
           <h3 className="text-md font-semibold">{notification.senderName}</h3>
@@ -33,11 +35,11 @@ export default function NotificationCard({ notification }: Props) {
           {notification.relatedContentUrl && (
             <Link
               to={notification.relatedContentUrl}
-              className="text-sm text-blue-600 hover:underline"
+              className="text-sm text-grey-300 hover:underline"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Mehr ansehen
+              Show more
             </Link>
           )}
         </div>
