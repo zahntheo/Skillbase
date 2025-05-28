@@ -7,9 +7,15 @@ import FadeInSection from "../../elements/home/FadeInSection"
 import { FaFilter } from "react-icons/fa";
 import { FiChevronDown } from "react-icons/fi";
 import { useState, useRef, useEffect } from "react";
-import { MdRadioButtonUnchecked } from "react-icons/md"
+import { MdRadioButtonUnchecked, MdCheck } from "react-icons/md"
 import { FaArchive } from "react-icons/fa";
 import { FaDisplay } from "react-icons/fa6";
+
+// Variables for Filter
+const timeOptions = ["Today", "Last 7 days", "This month"];
+const readStatusOptions = ["All", "Unread", "Read"];
+const sortOptions = ["Newest first", "Oldest first"];
+
 
 
 // import mock data
@@ -24,20 +30,56 @@ export default function NotfificationPage() {
     const location = useLocation();
     const profile = location.state?.profile as Profile;
 
-    // Handle dropdown menu
-    const [isOpen, setIsOpen] = useState(false);
+    // Handle dropdown and menu 
+    const [isOpenDDM, setIsOpenDDM] = useState(false);
     const dropdownRef = useRef(null);
+    const [isOpenFM, setIsOpenFM] = useState(false);
+    const filterRef = useRef(null);
 
     // Hock for automation of dropdown closing
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
             if (dropdownRef.current && !(dropdownRef.current as any).contains(event.target)) {
-                setIsOpen(false);
+                setIsOpenDDM(false);
             }
         }
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
+
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (filterRef.current && !(filterRef.current as any).contains(event.target)) {
+                setIsOpenFM(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
+
+    const [selectedTime, setSelectedTime] = useState("Last 7 days");
+    const [selectedStatus, setSelectedStatus] = useState("All");
+    const [selectedSort, setSelectedSort] = useState("Newest first");
+
+    const renderOption = (options: string[], selected: string, setSelected: (option: string) => void) =>
+        options.map((option) => (
+            <button
+                key={option}
+                onClick={() => setSelected(option)}
+                className={`flex items-center w-full gap-2 px-4 py-2 text-sm text-left ${selected === option
+                    ? "bg-blue-50 text-blue-700"
+                    : "text-gray-700 hover:bg-gray-100"
+                    }`}
+            >
+                {selected === option ? (
+                    <MdCheck className="text-blue-600" />
+                ) : (
+                    <MdRadioButtonUnchecked className="text-gray-400" />
+                )}
+                <span>{option}</span>
+            </button>
+        ));
 
     return (
         <div className="flex h-screen">
@@ -88,14 +130,15 @@ export default function NotfificationPage() {
                     <div className="flex items-center gap-4 flex-shrink-0">
                         <div className="relative inline-block text-left" ref={dropdownRef}>
                             <button
-                                onClick={() => setIsOpen(!isOpen)}
+                                onClick={() => setIsOpenDDM(!isOpenDDM)}
                                 className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition flex items-center gap-2"
                             >
-                                <FiChevronDown className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                                <FiChevronDown className={`transition-transform ${isOpenDDM ? "rotate-180" : ""}`} />
                             </button>
 
+                            {/* Dropdown Menu*/}
                             {/* If open display menu items */}
-                            {isOpen && (
+                            {isOpenDDM && (
                                 <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
                                     <a
                                         href="#"
@@ -109,22 +152,59 @@ export default function NotfificationPage() {
                                         href="#"
                                         className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                     >
-                                        <FaArchive  className="text-gray-500" />
+                                        <FaArchive className="text-gray-500" />
                                         <span>Archive</span>
                                     </a>
                                     <a
                                         href="#"
                                         className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                     >
-                                        <FaDisplay   className="text-gray-500" />
+                                        <FaDisplay className="text-gray-500" />
                                         <span>Display Settings</span>
                                     </a>
                                 </div>
+
                             )}
                         </div>
-                        <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
-                            <FaFilter className="text-white" />
-                        </button>
+
+                        {/*Filter Menu */}
+                        <div className="relative inline-block text-left" ref={filterRef}>
+                            <button
+                                onClick={() => setIsOpenFM(!isOpenFM)}
+                                className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition flex items-center gap-2"
+                            >
+                                <FaFilter className="text-white" />
+                            </button>
+                            {/* Dropdown Menu*/}
+                            {/* If open display menu items */}
+                            {isOpenFM && (
+                                <div className="absolute right-0 mt-2 w-64 bg-white border border-gray-200 rounded-xl shadow-lg z-50">
+                                    <div className="px-4 py-2 text-xs text-gray-500 uppercase tracking-wide">
+                                        Filter by status
+                                    </div>
+                                    <div className="divide-y divide-gray-100">
+                                        {renderOption(readStatusOptions, selectedStatus, setSelectedStatus)}
+                                    </div>
+
+                                    <div className="px-4 py-2 text-xs text-gray-500 uppercase tracking-wide">
+                                        Filter by time
+                                    </div>
+                                    <div className="divide-y divide-gray-100">
+                                        {renderOption(timeOptions, selectedTime, setSelectedTime)}
+                                    </div>
+
+                                    <div className="px-4 py-2 text-xs text-gray-500 uppercase tracking-wide">
+                                        Sort by
+                                    </div>
+                                    <div className="divide-y divide-gray-100 mb-2">
+                                        {renderOption(sortOptions, selectedSort, setSelectedSort)}
+                                    </div>
+                                </div>
+
+                            )}
+                        </div>
+
+
                     </div>
                 </div>
 
