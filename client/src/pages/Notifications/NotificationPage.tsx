@@ -17,11 +17,18 @@ import sampleNotifications from "../../assets/data/sampleNotifications";
 
 
 export default function NotfificationPage() {
+    // Group Notifications by date
     const groupedNotification = groupByDate(sampleNotifications);
+
+    // Get profile from logged in user
     const location = useLocation();
     const profile = location.state?.profile as Profile;
+
+    // Handle dropdown menu
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
+
+    // Hock for automation of dropdown closing
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
             if (dropdownRef.current && !(dropdownRef.current as any).contains(event.target)) {
@@ -31,6 +38,7 @@ export default function NotfificationPage() {
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
+
     return (
         <div className="flex h-screen">
 
@@ -86,6 +94,7 @@ export default function NotfificationPage() {
                                 <FiChevronDown className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
                             </button>
 
+                            {/* If open display menu items */}
                             {isOpen && (
                                 <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
                                     <a
