@@ -3,7 +3,7 @@ import Sidebar, { SidebarItem } from "./SideBar"
 import { Home, Settings, Bell } from "lucide-react"
 import { Link } from "react-router-dom";
 import { FiEdit } from "react-icons/fi";
-import { PiExportBold } from "react-icons/pi";
+
 
 // import side elements
 import ProfileCard from "../../elements/home/ProfileCard"
