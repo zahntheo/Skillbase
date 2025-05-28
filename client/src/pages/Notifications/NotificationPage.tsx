@@ -83,7 +83,7 @@ export default function NotfificationPage() {
                         {Object.entries(groupedNotification)
                             .sort(([a], [b]) => b.localeCompare(a))
                             .map(([key, notifications]) => (
-                                <div key={key} className="w-full max-w-xl mb-6 h-screen flex flex-col items-center">
+                                <div key={key} className="w-full max-w-xl mb-3 flex flex-col items-center">
                                     <h2>{key}</h2>
                                     <hr className="w-full h-px my-8 bg-gray-300 border-0 dark:bg-gray-800" />
                                     {notifications.map((notification) => (
