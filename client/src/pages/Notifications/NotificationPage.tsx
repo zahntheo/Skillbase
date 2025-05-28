@@ -95,7 +95,7 @@ export default function NotfificationPage() {
 
             {/* Main Content */}
             <main className="flex-1 relative flex flex-col bg-gradient-to-tr from-white to-gray-300 pt-24 overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 p-6 border-b border-gray-400 flex items-center justify-between backdrop-filter backdrop-blur-lg bg-white/30 bg-opacity-30 z-10">
+                <div className="absolute h-24 top-0 left-0 right-0 p-6 border-b border-gray-400 flex items-center justify-between backdrop-filter backdrop-blur-lg bg-white/30 bg-opacity-30 z-10">
 
                     {/* Left: Title */}
                     <h1 className="text-2xl font-bold text-gray-800 flex-shrink-0">Your Notifications</h1>
@@ -134,6 +134,7 @@ export default function NotfificationPage() {
                                 className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition flex items-center gap-2"
                             >
                                 <FiChevronDown className={`transition-transform ${isOpenDDM ? "rotate-180" : ""}`} />
+                                <span>Menu</span>
                             </button>
 
                             {/* Dropdown Menu*/}
@@ -174,6 +175,7 @@ export default function NotfificationPage() {
                                 className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition flex items-center gap-2"
                             >
                                 <FaFilter className="text-white" />
+                                <span>Filter</span>
                             </button>
                             {/* Dropdown Menu*/}
                             {/* If open display menu items */}
