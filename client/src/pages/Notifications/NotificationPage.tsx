@@ -6,6 +6,10 @@ import NotificationCard from "../../elements/notifications/NotificationCard";
 import FadeInSection from "../../elements/home/FadeInSection"
 import { FaFilter } from "react-icons/fa";
 import { FiChevronDown } from "react-icons/fi";
+import { useState, useRef, useEffect } from "react";
+import { MdRadioButtonUnchecked } from "react-icons/md"
+import { FaArchive } from "react-icons/fa";
+import { FaDisplay } from "react-icons/fa6";
 
 
 // import mock data
@@ -16,6 +20,17 @@ export default function NotfificationPage() {
     const groupedNotification = groupByDate(sampleNotifications);
     const location = useLocation();
     const profile = location.state?.profile as Profile;
+    const [isOpen, setIsOpen] = useState(false);
+    const dropdownRef = useRef(null);
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (dropdownRef.current && !(dropdownRef.current as any).contains(event.target)) {
+                setIsOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
     return (
         <div className="flex h-screen">
 
@@ -63,9 +78,41 @@ export default function NotfificationPage() {
 
                     {/* Right: Buttons */}
                     <div className="flex items-center gap-4 flex-shrink-0">
-                            <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
-                                <FiChevronDown className="text-white" />
+                        <div className="relative inline-block text-left" ref={dropdownRef}>
+                            <button
+                                onClick={() => setIsOpen(!isOpen)}
+                                className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition flex items-center gap-2"
+                            >
+                                <FiChevronDown className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
                             </button>
+
+                            {isOpen && (
+                                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                                    <a
+                                        href="#"
+                                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                    >
+                                        <MdRadioButtonUnchecked className="text-gray-500" />
+                                        <span>Select</span>
+                                    </a>
+
+                                    <a
+                                        href="#"
+                                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                    >
+                                        <FaArchive  className="text-gray-500" />
+                                        <span>Archive</span>
+                                    </a>
+                                    <a
+                                        href="#"
+                                        className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                    >
+                                        <FaDisplay   className="text-gray-500" />
+                                        <span>Display Settings</span>
+                                    </a>
+                                </div>
+                            )}
+                        </div>
                         <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition">
                             <FaFilter className="text-white" />
                         </button>
