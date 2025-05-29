@@ -78,8 +78,47 @@ export default function GeneralSettingsPage() {
           </div>
 
         </div>
-      </main>
+        <div className="flex-1 overflow-auto p-6">
+          <div className="flex flex-col items-center justify-center  mb-4">
+            {/* Notifications Section */}
+            <section className="bg-white rounded-2xl shadow p-6 space-y-4">
+              <h2 className="text-xl font-semibold text-gray-800">Notifications</h2>
 
-    </div>
+              <div className="flex items-center justify-between">
+                <span className="text-gray-700">Enable email notifications</span>
+                <input type="checkbox" className="toggle toggle-md toggle-success" />
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-gray-700">Push notifications</span>
+                <input type="checkbox" className="toggle toggle-md toggle-success" />
+              </div>
+            </section>
+
+            {/* Appearance Section */}
+            <section className="bg-white rounded-2xl shadow p-6 space-y-4">
+              <h2 className="text-xl font-semibold text-gray-800">Appearance</h2>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Theme</label>
+                <select className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                  <option>System Default</option>
+                  <option>Light</option>
+                  <option>Dark</option>
+                </select>
+              </div>
+            </section>
+
+            {/* Save Button */}
+            <div className="flex justify-end">
+              <button className="bg-gray-800 text-white px-6 py-2 rounded-xl shadow hover:bg-gray-700 transition">
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </main >
+      </div>
+
+
   );
 };

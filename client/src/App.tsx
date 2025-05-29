@@ -6,7 +6,7 @@ import NotificationsPage from "./pages/Notifications/NotificationPage";
 import GeneralSettingsPage from "./pages/Settings/GeneralSettingsPage";
 import ProfilePage from "./pages/Profile/ProfilePage";
 import EditProfile from "./pages/Profile/EditProfile";
-import ProfileSettings from "./pages/Profile/ProfileSettings";
+import ProfileSettings from "./pages/Settings/ProfileSettings";
 
 
 function App() {
