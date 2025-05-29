@@ -22,8 +22,12 @@ export default function DefaultPage() {
       </Sidebar>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col bg-gradient-to-tr from-white to-gray-300">
-        <div className="p-6 border-b border-gray-400 flex items-center justify-between">
+       <main className="flex-1 relative flex flex-col bg-gradient-to-tr from-white to-gray-300 pt-24 overflow-hidden">
+        <div className="absolute h-24 top-0 left-0 right-0 px-6 py-4 border-b border-gray-400 flex items-center justify-between backdrop-filter backdrop-blur-lg bg-white/30 z-10">
+          
+          {/* Left: Title */}
+          <h1 className="text-2xl font-bold text-gray-800 flex-shrink-0">Your Default</h1>
+
 
           {/* Header */}
           <h1 className="text-2xl font-bold text-gray-800">Default Page</h1>

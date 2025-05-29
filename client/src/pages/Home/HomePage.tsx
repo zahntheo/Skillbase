@@ -20,6 +20,7 @@ import profile from "../../assets/data/sampleProfile"
 export default function HomePage() {
   return (
     <div className="flex h-screen">
+
       {/* Sidebar */}
       <Sidebar profile={profile}>
         <SidebarItem icon={<Home size={20} />} text="Home" to="/home" profile={profile} active />
@@ -28,30 +29,29 @@ export default function HomePage() {
       </Sidebar>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col bg-gradient-to-tr from-white to-gray-300 ">
-        <div className="p-6 border-b border-gray-400 flex items-center justify-between">
+      <main className="flex-1 relative flex flex-col bg-gradient-to-tr from-white to-gray-300 pt-24 overflow-hidden">
+        <div className="absolute h-24 top-0 left-0 right-0 px-6 py-4 border-b border-gray-400 flex items-center justify-between backdrop-filter backdrop-blur-lg bg-white/30 z-10">
+          
+          {/* Left: Title */}
+          <h1 className="text-2xl font-bold text-gray-800 flex-shrink-0">Your Profile</h1>
 
-          {/* Header */}
-          <h1 className="text-2xl font-bold text-gray-800">Your Profile</h1>
-          <div className="flex items-right gap-4">
+          
 
-            {/*Buttons*/}
+          {/* Right: Buttons */}
+          <div className="flex items-center gap-4 flex-shrink-0">
             <Link to="/editProfile" state={{ profile }}>
-              <button className="bg-gray-800 text-white h-[55px] flex items-center justify-center rounded-xl shadow-sm hover:bg-gray-700 transition px-4">
+              <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition flex items-center gap-2">
                 <FiEdit className="text-white w-5 h-5" />
+                <span>Edit</span>
               </button>
             </Link>
-
-            <button className="bg-gray-800 text-white h-[55px] px-5 flex items-center justify-center rounded-xl shadow-sm hover:bg-gray-700 transition">
-              Export CV
+            <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition flex items-center gap-2">
+              <PiExportBold className="text-white" />
+              <span>Export</span>
             </button>
-
-
-
           </div>
-
-
         </div>
+
 
 
         {/* Profile Content */}
