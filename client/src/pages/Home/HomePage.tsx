@@ -11,7 +11,7 @@ import { PiExportBold } from "react-icons/pi";
 import ProfileCard from "../../elements/home/ProfileCard"
 import SkillCard from "../../elements/home/SkillCard"
 import ProjectCard from "../../elements/home/ProjectCard"
-import CurriculumVitae from "../../elements/home/CurriclumVitae"
+import CurriculumVitae from "../../elements/home/CurriculumVitae"
 
 // import mock data
 import profile from "../../assets/data/sampleProfile"
