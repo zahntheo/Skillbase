@@ -5,8 +5,6 @@ import { Link } from "react-router-dom";
 import { FiEdit } from "react-icons/fi";
 import { PiExportBold } from "react-icons/pi";
 
-
-
 // import side elements
 import ProfileCard from "../../elements/home/ProfileCard"
 import SkillCard from "../../elements/home/SkillCard"
@@ -17,10 +15,9 @@ import CurriculumVitae from "../../elements/home/CurriculumVitae"
 import profile from "../../assets/data/sampleProfile"
 
 
-
 export default function HomePage() {
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen bg-white">
 
       {/* Sidebar */}
       <Sidebar profile={profile}>
@@ -30,43 +27,39 @@ export default function HomePage() {
       </Sidebar>
 
       {/* Main Content */}
-      <main className="flex-1 relative flex flex-col bg-gradient-to-tr from-white to-gray-300 pt-24 overflow-hidden">
-        <div className="absolute h-24 top-0 left-0 right-0 px-6 py-4 border-b border-gray-400 flex items-center justify-between backdrop-filter backdrop-blur-lg bg-white/30 z-10">
+      <main className="flex-1 flex flex-col overflow-hidden">
+        {/* Top Bar */}
+        <header className="h-20 border-b border-gray-200 flex items-center justify-between px-8">
+          <div>
+            <h1 className="text-2xl font-bold text-black">Your Profile</h1>
+            <p className="text-sm text-gray-500">{profile.user.email}</p>
+          </div>
           
-          {/* Left: Title */}
-          <h1 className="text-2xl font-bold text-gray-800 flex-shrink-0">Your Profile</h1>
-
-          
-
-          {/* Right: Buttons */}
-          <div className="flex items-center gap-4 flex-shrink-0">
+          <div className="flex items-center gap-3">
             <Link to="/editProfile" state={{ profile }}>
-              <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition flex items-center gap-2">
-                <FiEdit className="text-white w-5 h-5" />
+              <button className="bg-black text-white px-5 py-2 rounded-lg shadow-sm hover:bg-gray-800 transition flex items-center gap-2 text-sm font-medium">
+                <FiEdit className="w-4 h-4" />
                 <span>Edit</span>
               </button>
             </Link>
-            <button className="bg-gray-800 text-white px-5 py-2.5 rounded-xl shadow-sm hover:bg-gray-700 transition flex items-center gap-2">
-              <PiExportBold className="text-white" />
+            <button className="bg-black text-white px-5 py-2 rounded-lg shadow-sm hover:bg-gray-800 transition flex items-center gap-2 text-sm font-medium">
+              <PiExportBold className="w-4 h-4" />
               <span>Export</span>
             </button>
           </div>
-        </div>
+        </header>
 
-
-
-        {/* Profile Content */}
-        <div className="flex-1 overflow-auto p-6">
-          <div className="flex flex-col items-center justify-center mb-4">
+        {/* Scrollable Content */}
+        <div className="flex-1 overflow-auto p-8">
+          {/* Profile Header */}
+          <div className="flex flex-col items-center mb-12">
             <img
               src={profile.profilePicture}
               alt="Profile"
-              className="w-32 h-32 rounded-full mb-4 ring-4 ring-white shadow-md"
+              className="w-32 h-32 rounded-full mb-4 object-cover shadow-lg"
             />
-            <div className="flex flex-col items-center">
-              <h3 className="text-lg font-semibold text-gray-800">{profile.user.name}</h3>
-              <span className="text-sm text-gray-500">@{profile.user.userName}</span>
-            </div>
+            <h2 className="text-2xl font-bold text-black">{profile.user.name}</h2>
+            <span className="text-gray-500">@{profile.user.userName}</span>
           </div>
 
           {/* Profile Card */}
@@ -78,26 +71,22 @@ export default function HomePage() {
             />
           </FadeInSection>
 
-          {/* Skills, Projects, and Workstations */}
+          {/* Skills Section */}
           <FadeInSection>
             <SkillCard skills={profile.skills} />
           </FadeInSection>
+
+          {/* Projects Section */}
           <FadeInSection>
             <ProjectCard projects={profile.projects} />
           </FadeInSection>
+
+          {/* Work Stations */}
           <FadeInSection>
             <CurriculumVitae workStations={profile.workStations} />
           </FadeInSection>
-
         </div>
-      </main >
-
-    </div >
-
+      </main>
+    </div>
   )
 }
-
-
-
-
-

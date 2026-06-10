@@ -1,33 +1,38 @@
 import React from 'react';
-
 import { Project } from '../../assets/types/project';
-
+import { TbCalendarDue } from "react-icons/tb";
 import { MdWork } from "react-icons/md";
 import { FaLocationArrow } from "react-icons/fa";
-import { TbCalendarDue } from "react-icons/tb";
 
 export interface ProjectCardProps {
     projects?: Project[];
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ projects }) => (
-    <div className="grid grid-cols-1 gap-4 w-full max-w-5xl mx-auto p-6 bg-white rounded-lg shadow-md m-8">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">Projects</h2>
-        {projects?.map((project) => (
-            <div
-                key={project.id}
-                className="p-4 bg-white rounded-md shadow transform transition duration-300 ease-in-out hover:scale-105 hover:shadow-lg flex items-center space-x-2"
-            >
-                <div className="flex items-center space-x-2 basis-1/4">
-                    <h3 className="text-lg font-semibold text-gray-800">{project.title}</h3>
-                    {project.isVerified && <span className="text-blue-500">✔</span>}
-                </div>
-                <p className="text-sm text-gray-500 basis-1/4">{project.description}</p>
-                <span className="text-xs text-gray-400 basis-1/6"><TbCalendarDue />{project.startDate} - {project.completionDate}</span>
-                <span className="text-xs text-gray-400 basis-1/6"><MdWork /> {project.company}</span>
-                <span className="text-xs text-gray-400 basis-1/6"><FaLocationArrow /> {project.location}</span>
+const ProjectItem: React.FC<{ project: Project }> = ({ project }) => (
+    <div className="p-4 bg-black rounded-lg shadow-md hover:shadow-xl transition-shadow duration-200">
+        <div className="grid grid-cols-4 gap-4 text-sm">
+            <div>
+                <h3 className="text-white font-medium">{project.title}</h3>
+                {project.isVerified && <span className="text-blue-400 text-xs">✔</span>}
             </div>
-        ))}
+            <p className="text-gray-400 text-xs col-span-2">{project.description}</p>
+            <div className="flex flex-col space-y-1 text-xs text-gray-400">
+                <span className="flex items-center gap-1"><TbCalendarDue /> {project.startDate} - {project.completionDate}</span>
+                <span className="flex items-center gap-1"><MdWork /> {project.company}</span>
+                <span className="flex items-center gap-1"><FaLocationArrow /> {project.location}</span>
+            </div>
+        </div>
+    </div>
+);
+
+const ProjectCard: React.FC<ProjectCardProps> = ({ projects }) => (
+    <div className="w-full max-w-4xl mx-auto bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-8">
+        <h2 className="text-xl font-bold text-black mb-6">Projects</h2>
+        <div className="grid grid-cols-1 gap-3">
+            {projects?.map((project) => (
+                <ProjectItem key={project.id} project={project} />
+            ))}
+        </div>
     </div>
 );
 
